@@ -1,0 +1,14 @@
+[ Fri Dec 30 17:28:44 2022 ] Train epoch: 1
+[ Fri Dec 30 17:36:21 2022 ] Train epoch: 1
+[ Fri Dec 30 17:41:40 2022 ] 	 Mean training loss: 4.2919. Mean training top_1_acc: 5.07%. Mean training top_5_acc: 17.88% 
+[ Fri Dec 30 17:41:40 2022 ] evaluation epoch: 1
+[ Fri Dec 30 17:42:19 2022 ] 	 Mean training loss: 4.0058. Mean training top_1_acc: 8.44%. Mean training top_5_acc: 27.26% 
+[ Fri Dec 30 17:42:19 2022 ] Best accuracy: 0.0844
+[ Fri Dec 30 17:42:19 2022 ] Epoch number: 1
+[ Fri Dec 30 17:42:19 2022 ] Model name: work_dir/test
+[ Fri Dec 30 17:42:19 2022 ] Model total number of params: 24353892
+[ Fri Dec 30 17:42:19 2022 ] Weight decay: 0.0004
+[ Fri Dec 30 17:42:19 2022 ] Base LR: 0.0001
+[ Fri Dec 30 17:42:19 2022 ] Batch Size: 32
+[ Fri Dec 30 17:42:19 2022 ] Test Batch Size: 32
+[ Fri Dec 30 17:42:19 2022 ] seed: 1

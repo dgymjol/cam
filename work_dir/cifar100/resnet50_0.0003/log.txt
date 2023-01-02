@@ -1,0 +1,329 @@
+[ Fri Dec 30 21:13:44 2022 ] Train epoch: 1
+[ Fri Dec 30 21:16:23 2022 ] 	 Mean training loss: 4.3350. Mean training top_1_acc: 4.80%. Mean training top_5_acc: 16.57% 
+[ Fri Dec 30 21:16:23 2022 ] evaluation epoch: 1
+[ Fri Dec 30 21:16:52 2022 ] 	 Mean training loss: 4.0260. Mean training top_1_acc: 8.07%. Mean training top_5_acc: 26.34% 
+[ Fri Dec 30 21:16:52 2022 ] Train epoch: 2
+[ Fri Dec 30 21:19:28 2022 ] 	 Mean training loss: 3.8435. Mean training top_1_acc: 11.32%. Mean training top_5_acc: 32.06% 
+[ Fri Dec 30 21:19:28 2022 ] evaluation epoch: 2
+[ Fri Dec 30 21:19:45 2022 ] 	 Mean training loss: 3.7074. Mean training top_1_acc: 13.70%. Mean training top_5_acc: 36.00% 
+[ Fri Dec 30 21:19:45 2022 ] Train epoch: 3
+[ Fri Dec 30 21:22:04 2022 ] 	 Mean training loss: 3.5548. Mean training top_1_acc: 16.39%. Mean training top_5_acc: 40.46% 
+[ Fri Dec 30 21:22:04 2022 ] evaluation epoch: 3
+[ Fri Dec 30 21:22:21 2022 ] 	 Mean training loss: 3.4780. Mean training top_1_acc: 18.12%. Mean training top_5_acc: 42.39% 
+[ Fri Dec 30 21:22:21 2022 ] Train epoch: 4
+[ Fri Dec 30 21:24:51 2022 ] 	 Mean training loss: 3.3420. Mean training top_1_acc: 19.98%. Mean training top_5_acc: 46.44% 
+[ Fri Dec 30 21:24:51 2022 ] evaluation epoch: 4
+[ Fri Dec 30 21:25:13 2022 ] 	 Mean training loss: 3.3273. Mean training top_1_acc: 20.55%. Mean training top_5_acc: 47.07% 
+[ Fri Dec 30 21:25:13 2022 ] Train epoch: 5
+[ Fri Dec 30 21:27:34 2022 ] 	 Mean training loss: 3.1575. Mean training top_1_acc: 23.52%. Mean training top_5_acc: 51.17% 
+[ Fri Dec 30 21:27:34 2022 ] evaluation epoch: 5
+[ Fri Dec 30 21:27:52 2022 ] 	 Mean training loss: 3.1787. Mean training top_1_acc: 23.27%. Mean training top_5_acc: 50.93% 
+[ Fri Dec 30 21:27:52 2022 ] Train epoch: 6
+[ Fri Dec 30 21:30:36 2022 ] 	 Mean training loss: 2.9961. Mean training top_1_acc: 26.48%. Mean training top_5_acc: 55.33% 
+[ Fri Dec 30 21:30:36 2022 ] evaluation epoch: 6
+[ Fri Dec 30 21:31:03 2022 ] 	 Mean training loss: 3.0531. Mean training top_1_acc: 25.93%. Mean training top_5_acc: 53.37% 
+[ Fri Dec 30 21:31:03 2022 ] Train epoch: 7
+[ Fri Dec 30 21:33:21 2022 ] 	 Mean training loss: 2.8367. Mean training top_1_acc: 29.44%. Mean training top_5_acc: 59.34% 
+[ Fri Dec 30 21:33:21 2022 ] evaluation epoch: 7
+[ Fri Dec 30 21:33:37 2022 ] 	 Mean training loss: 2.9721. Mean training top_1_acc: 26.30%. Mean training top_5_acc: 56.38% 
+[ Fri Dec 30 21:33:37 2022 ] Train epoch: 8
+[ Fri Dec 30 21:35:54 2022 ] 	 Mean training loss: 2.6317. Mean training top_1_acc: 34.20%. Mean training top_5_acc: 64.09% 
+[ Fri Dec 30 21:35:54 2022 ] evaluation epoch: 8
+[ Fri Dec 30 21:36:11 2022 ] 	 Mean training loss: 2.8497. Mean training top_1_acc: 29.89%. Mean training top_5_acc: 58.27% 
+[ Fri Dec 30 21:36:11 2022 ] Train epoch: 9
+[ Fri Dec 30 21:38:31 2022 ] 	 Mean training loss: 2.5342. Mean training top_1_acc: 36.31%. Mean training top_5_acc: 66.46% 
+[ Fri Dec 30 21:38:31 2022 ] evaluation epoch: 9
+[ Fri Dec 30 21:38:49 2022 ] 	 Mean training loss: 2.8188. Mean training top_1_acc: 30.30%. Mean training top_5_acc: 59.40% 
+[ Fri Dec 30 21:38:49 2022 ] Train epoch: 10
+[ Fri Dec 30 21:41:07 2022 ] 	 Mean training loss: 2.4494. Mean training top_1_acc: 37.79%. Mean training top_5_acc: 68.51% 
+[ Fri Dec 30 21:41:07 2022 ] evaluation epoch: 10
+[ Fri Dec 30 21:41:23 2022 ] 	 Mean training loss: 2.7646. Mean training top_1_acc: 31.72%. Mean training top_5_acc: 60.75% 
+[ Fri Dec 30 21:41:23 2022 ] Train epoch: 11
+[ Fri Dec 30 21:43:39 2022 ] 	 Mean training loss: 2.3590. Mean training top_1_acc: 40.12%. Mean training top_5_acc: 70.33% 
+[ Fri Dec 30 21:43:39 2022 ] evaluation epoch: 11
+[ Fri Dec 30 21:43:58 2022 ] 	 Mean training loss: 2.7488. Mean training top_1_acc: 31.51%. Mean training top_5_acc: 61.09% 
+[ Fri Dec 30 21:43:58 2022 ] Train epoch: 12
+[ Fri Dec 30 21:46:29 2022 ] 	 Mean training loss: 2.2764. Mean training top_1_acc: 41.76%. Mean training top_5_acc: 72.29% 
+[ Fri Dec 30 21:46:29 2022 ] evaluation epoch: 12
+[ Fri Dec 30 21:46:46 2022 ] 	 Mean training loss: 2.7058. Mean training top_1_acc: 32.49%. Mean training top_5_acc: 62.00% 
+[ Fri Dec 30 21:46:46 2022 ] Train epoch: 13
+[ Fri Dec 30 21:49:09 2022 ] 	 Mean training loss: 2.1969. Mean training top_1_acc: 43.49%. Mean training top_5_acc: 73.81% 
+[ Fri Dec 30 21:49:09 2022 ] evaluation epoch: 13
+[ Fri Dec 30 21:49:33 2022 ] 	 Mean training loss: 2.6940. Mean training top_1_acc: 32.89%. Mean training top_5_acc: 62.80% 
+[ Fri Dec 30 21:49:33 2022 ] Train epoch: 14
+[ Fri Dec 30 21:52:25 2022 ] 	 Mean training loss: 2.0576. Mean training top_1_acc: 47.38%. Mean training top_5_acc: 76.87% 
+[ Fri Dec 30 21:52:25 2022 ] evaluation epoch: 14
+[ Fri Dec 30 21:52:42 2022 ] 	 Mean training loss: 2.6369. Mean training top_1_acc: 33.94%. Mean training top_5_acc: 63.63% 
+[ Fri Dec 30 21:52:42 2022 ] Train epoch: 15
+[ Fri Dec 30 21:55:00 2022 ] 	 Mean training loss: 1.9973. Mean training top_1_acc: 48.85%. Mean training top_5_acc: 78.11% 
+[ Fri Dec 30 21:55:00 2022 ] evaluation epoch: 15
+[ Fri Dec 30 21:55:17 2022 ] 	 Mean training loss: 2.6282. Mean training top_1_acc: 34.30%. Mean training top_5_acc: 63.55% 
+[ Fri Dec 30 21:55:17 2022 ] Train epoch: 16
+[ Fri Dec 30 21:58:07 2022 ] 	 Mean training loss: 1.9401. Mean training top_1_acc: 50.23%. Mean training top_5_acc: 79.01% 
+[ Fri Dec 30 21:58:07 2022 ] evaluation epoch: 16
+[ Fri Dec 30 21:58:23 2022 ] 	 Mean training loss: 2.6371. Mean training top_1_acc: 34.00%. Mean training top_5_acc: 64.07% 
+[ Fri Dec 30 21:58:23 2022 ] Train epoch: 17
+[ Fri Dec 30 22:00:41 2022 ] 	 Mean training loss: 1.8873. Mean training top_1_acc: 51.72%. Mean training top_5_acc: 80.19% 
+[ Fri Dec 30 22:00:41 2022 ] evaluation epoch: 17
+[ Fri Dec 30 22:00:57 2022 ] 	 Mean training loss: 2.6091. Mean training top_1_acc: 34.38%. Mean training top_5_acc: 64.49% 
+[ Fri Dec 30 22:00:57 2022 ] Train epoch: 18
+[ Fri Dec 30 22:03:14 2022 ] 	 Mean training loss: 1.8294. Mean training top_1_acc: 53.03%. Mean training top_5_acc: 81.32% 
+[ Fri Dec 30 22:03:14 2022 ] evaluation epoch: 18
+[ Fri Dec 30 22:03:35 2022 ] 	 Mean training loss: 2.6305. Mean training top_1_acc: 34.25%. Mean training top_5_acc: 64.28% 
+[ Fri Dec 30 22:03:35 2022 ] Train epoch: 19
+[ Fri Dec 30 22:06:07 2022 ] 	 Mean training loss: 1.7707. Mean training top_1_acc: 54.79%. Mean training top_5_acc: 82.43% 
+[ Fri Dec 30 22:06:07 2022 ] evaluation epoch: 19
+[ Fri Dec 30 22:06:23 2022 ] 	 Mean training loss: 2.6121. Mean training top_1_acc: 34.38%. Mean training top_5_acc: 64.38% 
+[ Fri Dec 30 22:06:23 2022 ] Train epoch: 20
+[ Fri Dec 30 22:08:46 2022 ] 	 Mean training loss: 1.6802. Mean training top_1_acc: 57.24%. Mean training top_5_acc: 84.27% 
+[ Fri Dec 30 22:08:46 2022 ] evaluation epoch: 20
+[ Fri Dec 30 22:09:10 2022 ] 	 Mean training loss: 2.6086. Mean training top_1_acc: 34.69%. Mean training top_5_acc: 64.81% 
+[ Fri Dec 30 22:09:10 2022 ] Train epoch: 21
+[ Fri Dec 30 22:11:49 2022 ] 	 Mean training loss: 1.6440. Mean training top_1_acc: 58.26%. Mean training top_5_acc: 84.94% 
+[ Fri Dec 30 22:11:49 2022 ] evaluation epoch: 21
+[ Fri Dec 30 22:12:05 2022 ] 	 Mean training loss: 2.6129. Mean training top_1_acc: 34.45%. Mean training top_5_acc: 64.77% 
+[ Fri Dec 30 22:12:05 2022 ] Train epoch: 22
+[ Fri Dec 30 22:14:20 2022 ] 	 Mean training loss: 1.6043. Mean training top_1_acc: 59.25%. Mean training top_5_acc: 85.65% 
+[ Fri Dec 30 22:14:20 2022 ] evaluation epoch: 22
+[ Fri Dec 30 22:14:37 2022 ] 	 Mean training loss: 2.6096. Mean training top_1_acc: 34.95%. Mean training top_5_acc: 64.59% 
+[ Fri Dec 30 22:14:37 2022 ] Train epoch: 23
+[ Fri Dec 30 22:16:53 2022 ] 	 Mean training loss: 1.5700. Mean training top_1_acc: 60.32%. Mean training top_5_acc: 86.33% 
+[ Fri Dec 30 22:16:53 2022 ] evaluation epoch: 23
+[ Fri Dec 30 22:17:09 2022 ] 	 Mean training loss: 2.5968. Mean training top_1_acc: 35.17%. Mean training top_5_acc: 65.30% 
+[ Fri Dec 30 22:17:09 2022 ] Train epoch: 24
+[ Fri Dec 30 22:19:27 2022 ] 	 Mean training loss: 1.5366. Mean training top_1_acc: 60.95%. Mean training top_5_acc: 86.78% 
+[ Fri Dec 30 22:19:27 2022 ] evaluation epoch: 24
+[ Fri Dec 30 22:19:43 2022 ] 	 Mean training loss: 2.6079. Mean training top_1_acc: 34.99%. Mean training top_5_acc: 64.79% 
+[ Fri Dec 30 22:19:43 2022 ] Train epoch: 25
+[ Fri Dec 30 22:22:02 2022 ] 	 Mean training loss: 1.4893. Mean training top_1_acc: 62.44%. Mean training top_5_acc: 87.53% 
+[ Fri Dec 30 22:22:02 2022 ] evaluation epoch: 25
+[ Fri Dec 30 22:22:18 2022 ] 	 Mean training loss: 2.6265. Mean training top_1_acc: 34.91%. Mean training top_5_acc: 64.71% 
+[ Fri Dec 30 22:22:18 2022 ] Train epoch: 26
+[ Fri Dec 30 22:24:56 2022 ] 	 Mean training loss: 1.4326. Mean training top_1_acc: 64.41%. Mean training top_5_acc: 88.69% 
+[ Fri Dec 30 22:24:56 2022 ] evaluation epoch: 26
+[ Fri Dec 30 22:25:12 2022 ] 	 Mean training loss: 2.6296. Mean training top_1_acc: 34.89%. Mean training top_5_acc: 64.69% 
+[ Fri Dec 30 22:25:12 2022 ] Train epoch: 27
+[ Fri Dec 30 22:27:30 2022 ] 	 Mean training loss: 1.4164. Mean training top_1_acc: 64.59%. Mean training top_5_acc: 88.95% 
+[ Fri Dec 30 22:27:30 2022 ] evaluation epoch: 27
+[ Fri Dec 30 22:27:47 2022 ] 	 Mean training loss: 2.6135. Mean training top_1_acc: 35.54%. Mean training top_5_acc: 64.61% 
+[ Fri Dec 30 22:27:47 2022 ] Train epoch: 28
+[ Fri Dec 30 22:30:43 2022 ] 	 Mean training loss: 1.3980. Mean training top_1_acc: 65.03%. Mean training top_5_acc: 89.31% 
+[ Fri Dec 30 22:30:43 2022 ] evaluation epoch: 28
+[ Fri Dec 30 22:31:04 2022 ] 	 Mean training loss: 2.6191. Mean training top_1_acc: 34.91%. Mean training top_5_acc: 65.35% 
+[ Fri Dec 30 22:31:04 2022 ] Train epoch: 29
+[ Fri Dec 30 22:33:29 2022 ] 	 Mean training loss: 1.3715. Mean training top_1_acc: 65.96%. Mean training top_5_acc: 89.76% 
+[ Fri Dec 30 22:33:29 2022 ] evaluation epoch: 29
+[ Fri Dec 30 22:33:45 2022 ] 	 Mean training loss: 2.6290. Mean training top_1_acc: 35.20%. Mean training top_5_acc: 64.88% 
+[ Fri Dec 30 22:33:45 2022 ] Train epoch: 30
+[ Fri Dec 30 22:36:20 2022 ] 	 Mean training loss: 1.3497. Mean training top_1_acc: 66.48%. Mean training top_5_acc: 90.02% 
+[ Fri Dec 30 22:36:20 2022 ] evaluation epoch: 30
+[ Fri Dec 30 22:36:45 2022 ] 	 Mean training loss: 2.6322. Mean training top_1_acc: 35.33%. Mean training top_5_acc: 64.98% 
+[ Fri Dec 30 22:36:45 2022 ] Train epoch: 31
+[ Fri Dec 30 22:39:11 2022 ] 	 Mean training loss: 1.3322. Mean training top_1_acc: 66.83%. Mean training top_5_acc: 90.28% 
+[ Fri Dec 30 22:39:11 2022 ] evaluation epoch: 31
+[ Fri Dec 30 22:39:27 2022 ] 	 Mean training loss: 2.6422. Mean training top_1_acc: 34.87%. Mean training top_5_acc: 65.10% 
+[ Fri Dec 30 22:39:27 2022 ] Train epoch: 32
+[ Fri Dec 30 22:41:43 2022 ] 	 Mean training loss: 1.3077. Mean training top_1_acc: 67.71%. Mean training top_5_acc: 90.79% 
+[ Fri Dec 30 22:41:43 2022 ] evaluation epoch: 32
+[ Fri Dec 30 22:41:57 2022 ] 	 Mean training loss: 2.6541. Mean training top_1_acc: 34.76%. Mean training top_5_acc: 64.78% 
+[ Fri Dec 30 22:41:57 2022 ] Train epoch: 33
+[ Fri Dec 30 22:44:31 2022 ] 	 Mean training loss: 1.2882. Mean training top_1_acc: 68.40%. Mean training top_5_acc: 90.91% 
+[ Fri Dec 30 22:44:31 2022 ] evaluation epoch: 33
+[ Fri Dec 30 22:44:46 2022 ] 	 Mean training loss: 2.6398. Mean training top_1_acc: 35.20%. Mean training top_5_acc: 64.90% 
+[ Fri Dec 30 22:44:46 2022 ] Train epoch: 34
+[ Fri Dec 30 22:47:02 2022 ] 	 Mean training loss: 1.2746. Mean training top_1_acc: 68.65%. Mean training top_5_acc: 91.24% 
+[ Fri Dec 30 22:47:02 2022 ] evaluation epoch: 34
+[ Fri Dec 30 22:47:17 2022 ] 	 Mean training loss: 2.6513. Mean training top_1_acc: 35.05%. Mean training top_5_acc: 64.50% 
+[ Fri Dec 30 22:47:17 2022 ] Train epoch: 35
+[ Fri Dec 30 22:50:06 2022 ] 	 Mean training loss: 1.2644. Mean training top_1_acc: 69.10%. Mean training top_5_acc: 91.32% 
+[ Fri Dec 30 22:50:06 2022 ] evaluation epoch: 35
+[ Fri Dec 30 22:50:22 2022 ] 	 Mean training loss: 2.6353. Mean training top_1_acc: 34.94%. Mean training top_5_acc: 64.84% 
+[ Fri Dec 30 22:50:22 2022 ] Train epoch: 36
+[ Fri Dec 30 22:52:38 2022 ] 	 Mean training loss: 1.2555. Mean training top_1_acc: 69.18%. Mean training top_5_acc: 91.57% 
+[ Fri Dec 30 22:52:38 2022 ] evaluation epoch: 36
+[ Fri Dec 30 22:52:55 2022 ] 	 Mean training loss: 2.6591. Mean training top_1_acc: 34.66%. Mean training top_5_acc: 64.32% 
+[ Fri Dec 30 22:52:55 2022 ] Train epoch: 37
+[ Fri Dec 30 22:55:15 2022 ] 	 Mean training loss: 1.2449. Mean training top_1_acc: 69.71%. Mean training top_5_acc: 91.64% 
+[ Fri Dec 30 22:55:15 2022 ] evaluation epoch: 37
+[ Fri Dec 30 22:55:31 2022 ] 	 Mean training loss: 2.6455. Mean training top_1_acc: 35.43%. Mean training top_5_acc: 64.07% 
+[ Fri Dec 30 22:55:31 2022 ] Train epoch: 38
+[ Fri Dec 30 22:57:49 2022 ] 	 Mean training loss: 1.2256. Mean training top_1_acc: 70.14%. Mean training top_5_acc: 91.90% 
+[ Fri Dec 30 22:57:49 2022 ] evaluation epoch: 38
+[ Fri Dec 30 22:58:06 2022 ] 	 Mean training loss: 2.6791. Mean training top_1_acc: 34.56%. Mean training top_5_acc: 64.64% 
+[ Fri Dec 30 22:58:06 2022 ] Train epoch: 39
+[ Fri Dec 30 23:00:24 2022 ] 	 Mean training loss: 1.2242. Mean training top_1_acc: 70.35%. Mean training top_5_acc: 92.01% 
+[ Fri Dec 30 23:00:24 2022 ] evaluation epoch: 39
+[ Fri Dec 30 23:00:40 2022 ] 	 Mean training loss: 2.6674. Mean training top_1_acc: 35.25%. Mean training top_5_acc: 64.41% 
+[ Fri Dec 30 23:00:40 2022 ] Train epoch: 40
+[ Fri Dec 30 23:03:07 2022 ] 	 Mean training loss: 1.2142. Mean training top_1_acc: 70.56%. Mean training top_5_acc: 92.13% 
+[ Fri Dec 30 23:03:07 2022 ] evaluation epoch: 40
+[ Fri Dec 30 23:03:28 2022 ] 	 Mean training loss: 2.6662. Mean training top_1_acc: 34.73%. Mean training top_5_acc: 64.60% 
+[ Fri Dec 30 23:03:28 2022 ] Train epoch: 41
+[ Fri Dec 30 23:05:50 2022 ] 	 Mean training loss: 1.2083. Mean training top_1_acc: 70.85%. Mean training top_5_acc: 92.31% 
+[ Fri Dec 30 23:05:50 2022 ] evaluation epoch: 41
+[ Fri Dec 30 23:06:07 2022 ] 	 Mean training loss: 2.6728. Mean training top_1_acc: 34.24%. Mean training top_5_acc: 64.18% 
+[ Fri Dec 30 23:06:07 2022 ] Train epoch: 42
+[ Fri Dec 30 23:08:49 2022 ] 	 Mean training loss: 1.2110. Mean training top_1_acc: 70.55%. Mean training top_5_acc: 92.13% 
+[ Fri Dec 30 23:08:49 2022 ] evaluation epoch: 42
+[ Fri Dec 30 23:09:13 2022 ] 	 Mean training loss: 2.6664. Mean training top_1_acc: 35.08%. Mean training top_5_acc: 64.64% 
+[ Fri Dec 30 23:09:13 2022 ] Train epoch: 43
+[ Fri Dec 30 23:11:50 2022 ] 	 Mean training loss: 1.2032. Mean training top_1_acc: 70.91%. Mean training top_5_acc: 92.29% 
+[ Fri Dec 30 23:11:50 2022 ] evaluation epoch: 43
+[ Fri Dec 30 23:12:05 2022 ] 	 Mean training loss: 2.6954. Mean training top_1_acc: 34.41%. Mean training top_5_acc: 63.96% 
+[ Fri Dec 30 23:12:05 2022 ] Train epoch: 44
+[ Fri Dec 30 23:14:22 2022 ] 	 Mean training loss: 1.1867. Mean training top_1_acc: 71.52%. Mean training top_5_acc: 92.56% 
+[ Fri Dec 30 23:14:22 2022 ] evaluation epoch: 44
+[ Fri Dec 30 23:14:40 2022 ] 	 Mean training loss: 2.6657. Mean training top_1_acc: 34.92%. Mean training top_5_acc: 64.52% 
+[ Fri Dec 30 23:14:40 2022 ] Train epoch: 45
+[ Fri Dec 30 23:17:32 2022 ] 	 Mean training loss: 1.1920. Mean training top_1_acc: 71.15%. Mean training top_5_acc: 92.37% 
+[ Fri Dec 30 23:17:32 2022 ] evaluation epoch: 45
+[ Fri Dec 30 23:17:48 2022 ] 	 Mean training loss: 2.6830. Mean training top_1_acc: 34.32%. Mean training top_5_acc: 64.26% 
+[ Fri Dec 30 23:17:48 2022 ] Train epoch: 46
+[ Fri Dec 30 23:20:04 2022 ] 	 Mean training loss: 1.1862. Mean training top_1_acc: 71.45%. Mean training top_5_acc: 92.59% 
+[ Fri Dec 30 23:20:04 2022 ] evaluation epoch: 46
+[ Fri Dec 30 23:20:21 2022 ] 	 Mean training loss: 2.6667. Mean training top_1_acc: 34.84%. Mean training top_5_acc: 64.54% 
+[ Fri Dec 30 23:20:21 2022 ] Train epoch: 47
+[ Fri Dec 30 23:22:54 2022 ] 	 Mean training loss: 1.1821. Mean training top_1_acc: 71.60%. Mean training top_5_acc: 92.61% 
+[ Fri Dec 30 23:22:54 2022 ] evaluation epoch: 47
+[ Fri Dec 30 23:23:13 2022 ] 	 Mean training loss: 2.6707. Mean training top_1_acc: 34.76%. Mean training top_5_acc: 64.28% 
+[ Fri Dec 30 23:23:13 2022 ] Train epoch: 48
+[ Fri Dec 30 23:25:30 2022 ] 	 Mean training loss: 1.1830. Mean training top_1_acc: 71.48%. Mean training top_5_acc: 92.71% 
+[ Fri Dec 30 23:25:30 2022 ] evaluation epoch: 48
+[ Fri Dec 30 23:25:47 2022 ] 	 Mean training loss: 2.6749. Mean training top_1_acc: 34.74%. Mean training top_5_acc: 64.49% 
+[ Fri Dec 30 23:25:47 2022 ] Train epoch: 49
+[ Fri Dec 30 23:28:44 2022 ] 	 Mean training loss: 1.1718. Mean training top_1_acc: 71.99%. Mean training top_5_acc: 92.79% 
+[ Fri Dec 30 23:28:44 2022 ] evaluation epoch: 49
+[ Fri Dec 30 23:29:01 2022 ] 	 Mean training loss: 2.6781. Mean training top_1_acc: 34.63%. Mean training top_5_acc: 64.25% 
+[ Fri Dec 30 23:29:01 2022 ] Train epoch: 50
+[ Fri Dec 30 23:31:21 2022 ] 	 Mean training loss: 1.1716. Mean training top_1_acc: 71.77%. Mean training top_5_acc: 92.79% 
+[ Fri Dec 30 23:31:21 2022 ] evaluation epoch: 50
+[ Fri Dec 30 23:31:36 2022 ] 	 Mean training loss: 2.6731. Mean training top_1_acc: 34.29%. Mean training top_5_acc: 64.20% 
+[ Fri Dec 30 23:31:36 2022 ] Train epoch: 51
+[ Fri Dec 30 23:33:56 2022 ] 	 Mean training loss: 1.1779. Mean training top_1_acc: 71.73%. Mean training top_5_acc: 92.77% 
+[ Fri Dec 30 23:33:56 2022 ] evaluation epoch: 51
+[ Fri Dec 30 23:34:13 2022 ] 	 Mean training loss: 2.6800. Mean training top_1_acc: 34.63%. Mean training top_5_acc: 64.70% 
+[ Fri Dec 30 23:34:13 2022 ] Train epoch: 52
+[ Fri Dec 30 23:36:31 2022 ] 	 Mean training loss: 1.1680. Mean training top_1_acc: 71.92%. Mean training top_5_acc: 92.87% 
+[ Fri Dec 30 23:36:31 2022 ] evaluation epoch: 52
+[ Fri Dec 30 23:36:49 2022 ] 	 Mean training loss: 2.6753. Mean training top_1_acc: 34.64%. Mean training top_5_acc: 64.43% 
+[ Fri Dec 30 23:36:49 2022 ] Train epoch: 53
+[ Fri Dec 30 23:39:04 2022 ] 	 Mean training loss: 1.1659. Mean training top_1_acc: 72.09%. Mean training top_5_acc: 92.79% 
+[ Fri Dec 30 23:39:04 2022 ] evaluation epoch: 53
+[ Fri Dec 30 23:39:20 2022 ] 	 Mean training loss: 2.6846. Mean training top_1_acc: 34.53%. Mean training top_5_acc: 64.26% 
+[ Fri Dec 30 23:39:20 2022 ] Train epoch: 54
+[ Fri Dec 30 23:41:44 2022 ] 	 Mean training loss: 1.1692. Mean training top_1_acc: 71.80%. Mean training top_5_acc: 92.75% 
+[ Fri Dec 30 23:41:44 2022 ] evaluation epoch: 54
+[ Fri Dec 30 23:42:06 2022 ] 	 Mean training loss: 2.6800. Mean training top_1_acc: 34.47%. Mean training top_5_acc: 64.38% 
+[ Fri Dec 30 23:42:06 2022 ] Train epoch: 55
+[ Fri Dec 30 23:44:31 2022 ] 	 Mean training loss: 1.1708. Mean training top_1_acc: 71.66%. Mean training top_5_acc: 92.85% 
+[ Fri Dec 30 23:44:31 2022 ] evaluation epoch: 55
+[ Fri Dec 30 23:44:47 2022 ] 	 Mean training loss: 2.6856. Mean training top_1_acc: 34.60%. Mean training top_5_acc: 64.12% 
+[ Fri Dec 30 23:44:47 2022 ] Train epoch: 56
+[ Fri Dec 30 23:47:25 2022 ] 	 Mean training loss: 1.1590. Mean training top_1_acc: 72.23%. Mean training top_5_acc: 93.01% 
+[ Fri Dec 30 23:47:25 2022 ] evaluation epoch: 56
+[ Fri Dec 30 23:47:49 2022 ] 	 Mean training loss: 2.6957. Mean training top_1_acc: 34.92%. Mean training top_5_acc: 64.12% 
+[ Fri Dec 30 23:47:49 2022 ] Train epoch: 57
+[ Fri Dec 30 23:50:28 2022 ] 	 Mean training loss: 1.1609. Mean training top_1_acc: 72.07%. Mean training top_5_acc: 92.98% 
+[ Fri Dec 30 23:50:28 2022 ] evaluation epoch: 57
+[ Fri Dec 30 23:50:50 2022 ] 	 Mean training loss: 2.6859. Mean training top_1_acc: 34.37%. Mean training top_5_acc: 63.90% 
+[ Fri Dec 30 23:50:50 2022 ] Train epoch: 58
+[ Fri Dec 30 23:53:09 2022 ] 	 Mean training loss: 1.1699. Mean training top_1_acc: 71.93%. Mean training top_5_acc: 92.84% 
+[ Fri Dec 30 23:53:09 2022 ] evaluation epoch: 58
+[ Fri Dec 30 23:53:26 2022 ] 	 Mean training loss: 2.6628. Mean training top_1_acc: 34.79%. Mean training top_5_acc: 64.55% 
+[ Fri Dec 30 23:53:26 2022 ] Train epoch: 59
+[ Fri Dec 30 23:56:14 2022 ] 	 Mean training loss: 1.1700. Mean training top_1_acc: 71.88%. Mean training top_5_acc: 92.78% 
+[ Fri Dec 30 23:56:14 2022 ] evaluation epoch: 59
+[ Fri Dec 30 23:56:30 2022 ] 	 Mean training loss: 2.6911. Mean training top_1_acc: 34.25%. Mean training top_5_acc: 64.61% 
+[ Fri Dec 30 23:56:30 2022 ] Train epoch: 60
+[ Fri Dec 30 23:58:48 2022 ] 	 Mean training loss: 1.1644. Mean training top_1_acc: 72.01%. Mean training top_5_acc: 92.98% 
+[ Fri Dec 30 23:58:48 2022 ] evaluation epoch: 60
+[ Fri Dec 30 23:59:05 2022 ] 	 Mean training loss: 2.6664. Mean training top_1_acc: 34.68%. Mean training top_5_acc: 64.10% 
+[ Fri Dec 30 23:59:05 2022 ] Train epoch: 61
+[ Sat Dec 31 00:01:39 2022 ] 	 Mean training loss: 1.1675. Mean training top_1_acc: 71.89%. Mean training top_5_acc: 92.90% 
+[ Sat Dec 31 00:01:39 2022 ] evaluation epoch: 61
+[ Sat Dec 31 00:01:58 2022 ] 	 Mean training loss: 2.6818. Mean training top_1_acc: 34.66%. Mean training top_5_acc: 64.44% 
+[ Sat Dec 31 00:01:58 2022 ] Train epoch: 62
+[ Sat Dec 31 00:04:13 2022 ] 	 Mean training loss: 1.1564. Mean training top_1_acc: 72.34%. Mean training top_5_acc: 92.95% 
+[ Sat Dec 31 00:04:13 2022 ] evaluation epoch: 62
+[ Sat Dec 31 00:04:30 2022 ] 	 Mean training loss: 2.6845. Mean training top_1_acc: 34.35%. Mean training top_5_acc: 64.16% 
+[ Sat Dec 31 00:04:30 2022 ] Train epoch: 63
+[ Sat Dec 31 00:07:21 2022 ] 	 Mean training loss: 1.1568. Mean training top_1_acc: 72.33%. Mean training top_5_acc: 92.96% 
+[ Sat Dec 31 00:07:21 2022 ] evaluation epoch: 63
+[ Sat Dec 31 00:07:37 2022 ] 	 Mean training loss: 2.6942. Mean training top_1_acc: 34.41%. Mean training top_5_acc: 64.18% 
+[ Sat Dec 31 00:07:37 2022 ] Train epoch: 64
+[ Sat Dec 31 00:09:52 2022 ] 	 Mean training loss: 1.1586. Mean training top_1_acc: 72.35%. Mean training top_5_acc: 93.01% 
+[ Sat Dec 31 00:09:52 2022 ] evaluation epoch: 64
+[ Sat Dec 31 00:10:08 2022 ] 	 Mean training loss: 2.6943. Mean training top_1_acc: 34.55%. Mean training top_5_acc: 63.99% 
+[ Sat Dec 31 00:10:08 2022 ] Train epoch: 65
+[ Sat Dec 31 00:12:26 2022 ] 	 Mean training loss: 1.1586. Mean training top_1_acc: 72.31%. Mean training top_5_acc: 92.88% 
+[ Sat Dec 31 00:12:26 2022 ] evaluation epoch: 65
+[ Sat Dec 31 00:12:43 2022 ] 	 Mean training loss: 2.6916. Mean training top_1_acc: 34.63%. Mean training top_5_acc: 64.16% 
+[ Sat Dec 31 00:12:43 2022 ] Train epoch: 66
+[ Sat Dec 31 00:15:02 2022 ] 	 Mean training loss: 1.1659. Mean training top_1_acc: 71.86%. Mean training top_5_acc: 92.84% 
+[ Sat Dec 31 00:15:02 2022 ] evaluation epoch: 66
+[ Sat Dec 31 00:15:17 2022 ] 	 Mean training loss: 2.7026. Mean training top_1_acc: 34.57%. Mean training top_5_acc: 64.30% 
+[ Sat Dec 31 00:15:17 2022 ] Train epoch: 67
+[ Sat Dec 31 00:17:35 2022 ] 	 Mean training loss: 1.1616. Mean training top_1_acc: 72.10%. Mean training top_5_acc: 92.98% 
+[ Sat Dec 31 00:17:35 2022 ] evaluation epoch: 67
+[ Sat Dec 31 00:17:52 2022 ] 	 Mean training loss: 2.6839. Mean training top_1_acc: 34.80%. Mean training top_5_acc: 64.63% 
+[ Sat Dec 31 00:17:52 2022 ] Train epoch: 68
+[ Sat Dec 31 00:20:11 2022 ] 	 Mean training loss: 1.1572. Mean training top_1_acc: 72.30%. Mean training top_5_acc: 93.04% 
+[ Sat Dec 31 00:20:11 2022 ] evaluation epoch: 68
+[ Sat Dec 31 00:20:33 2022 ] 	 Mean training loss: 2.6854. Mean training top_1_acc: 34.49%. Mean training top_5_acc: 64.18% 
+[ Sat Dec 31 00:20:33 2022 ] Train epoch: 69
+[ Sat Dec 31 00:23:01 2022 ] 	 Mean training loss: 1.1568. Mean training top_1_acc: 72.38%. Mean training top_5_acc: 92.97% 
+[ Sat Dec 31 00:23:01 2022 ] evaluation epoch: 69
+[ Sat Dec 31 00:23:17 2022 ] 	 Mean training loss: 2.6960. Mean training top_1_acc: 34.49%. Mean training top_5_acc: 64.40% 
+[ Sat Dec 31 00:23:17 2022 ] Train epoch: 70
+[ Sat Dec 31 00:25:48 2022 ] 	 Mean training loss: 1.1657. Mean training top_1_acc: 71.98%. Mean training top_5_acc: 92.79% 
+[ Sat Dec 31 00:25:48 2022 ] evaluation epoch: 70
+[ Sat Dec 31 00:26:14 2022 ] 	 Mean training loss: 2.6862. Mean training top_1_acc: 34.68%. Mean training top_5_acc: 64.28% 
+[ Sat Dec 31 00:26:14 2022 ] Train epoch: 71
+[ Sat Dec 31 00:28:42 2022 ] 	 Mean training loss: 1.1605. Mean training top_1_acc: 72.36%. Mean training top_5_acc: 92.90% 
+[ Sat Dec 31 00:28:42 2022 ] evaluation epoch: 71
+[ Sat Dec 31 00:29:02 2022 ] 	 Mean training loss: 2.6828. Mean training top_1_acc: 34.20%. Mean training top_5_acc: 64.13% 
+[ Sat Dec 31 00:29:02 2022 ] Train epoch: 72
+[ Sat Dec 31 00:31:32 2022 ] 	 Mean training loss: 1.1586. Mean training top_1_acc: 72.20%. Mean training top_5_acc: 92.99% 
+[ Sat Dec 31 00:31:32 2022 ] evaluation epoch: 72
+[ Sat Dec 31 00:31:49 2022 ] 	 Mean training loss: 2.6871. Mean training top_1_acc: 34.58%. Mean training top_5_acc: 64.16% 
+[ Sat Dec 31 00:31:49 2022 ] Train epoch: 73
+[ Sat Dec 31 00:34:12 2022 ] 	 Mean training loss: 1.1594. Mean training top_1_acc: 72.27%. Mean training top_5_acc: 92.89% 
+[ Sat Dec 31 00:34:12 2022 ] evaluation epoch: 73
+[ Sat Dec 31 00:34:38 2022 ] 	 Mean training loss: 2.7070. Mean training top_1_acc: 33.91%. Mean training top_5_acc: 64.11% 
+[ Sat Dec 31 00:34:38 2022 ] Train epoch: 74
+[ Sat Dec 31 00:37:14 2022 ] 	 Mean training loss: 1.1503. Mean training top_1_acc: 72.33%. Mean training top_5_acc: 93.03% 
+[ Sat Dec 31 00:37:14 2022 ] evaluation epoch: 74
+[ Sat Dec 31 00:37:30 2022 ] 	 Mean training loss: 2.6903. Mean training top_1_acc: 34.48%. Mean training top_5_acc: 64.37% 
+[ Sat Dec 31 00:37:30 2022 ] Train epoch: 75
+[ Sat Dec 31 00:39:56 2022 ] 	 Mean training loss: 1.1686. Mean training top_1_acc: 72.05%. Mean training top_5_acc: 92.80% 
+[ Sat Dec 31 00:39:56 2022 ] evaluation epoch: 75
+[ Sat Dec 31 00:40:18 2022 ] 	 Mean training loss: 2.6881. Mean training top_1_acc: 34.62%. Mean training top_5_acc: 64.05% 
+[ Sat Dec 31 00:40:18 2022 ] Train epoch: 76
+[ Sat Dec 31 00:42:41 2022 ] 	 Mean training loss: 1.1435. Mean training top_1_acc: 72.76%. Mean training top_5_acc: 93.19% 
+[ Sat Dec 31 00:42:41 2022 ] evaluation epoch: 76
+[ Sat Dec 31 00:42:57 2022 ] 	 Mean training loss: 2.6820. Mean training top_1_acc: 34.67%. Mean training top_5_acc: 64.65% 
+[ Sat Dec 31 00:42:57 2022 ] Train epoch: 77
+[ Sat Dec 31 00:45:38 2022 ] 	 Mean training loss: 1.1566. Mean training top_1_acc: 72.12%. Mean training top_5_acc: 93.13% 
+[ Sat Dec 31 00:45:38 2022 ] evaluation epoch: 77
+[ Sat Dec 31 00:46:01 2022 ] 	 Mean training loss: 2.6850. Mean training top_1_acc: 34.62%. Mean training top_5_acc: 63.95% 
+[ Sat Dec 31 00:46:01 2022 ] Train epoch: 78
+[ Sat Dec 31 00:48:22 2022 ] 	 Mean training loss: 1.1590. Mean training top_1_acc: 72.19%. Mean training top_5_acc: 92.94% 
+[ Sat Dec 31 00:48:22 2022 ] evaluation epoch: 78
+[ Sat Dec 31 00:48:39 2022 ] 	 Mean training loss: 2.6902. Mean training top_1_acc: 34.71%. Mean training top_5_acc: 63.76% 
+[ Sat Dec 31 00:48:39 2022 ] Train epoch: 79
+[ Sat Dec 31 00:50:56 2022 ] 	 Mean training loss: 1.1573. Mean training top_1_acc: 72.22%. Mean training top_5_acc: 92.98% 
+[ Sat Dec 31 00:50:56 2022 ] evaluation epoch: 79
+[ Sat Dec 31 00:51:12 2022 ] 	 Mean training loss: 2.6882. Mean training top_1_acc: 34.15%. Mean training top_5_acc: 64.43% 
+[ Sat Dec 31 00:51:12 2022 ] Train epoch: 80
+[ Sat Dec 31 00:53:30 2022 ] 	 Mean training loss: 1.1600. Mean training top_1_acc: 72.14%. Mean training top_5_acc: 93.07% 
+[ Sat Dec 31 00:53:30 2022 ] evaluation epoch: 80
+[ Sat Dec 31 00:53:45 2022 ] 	 Mean training loss: 2.6740. Mean training top_1_acc: 34.81%. Mean training top_5_acc: 64.68% 
+[ Sat Dec 31 00:53:45 2022 ] Best accuracy: 0.3554
+[ Sat Dec 31 00:53:45 2022 ] Epoch number: 27
+[ Sat Dec 31 00:53:45 2022 ] Model name: work_dir/cifar100/resnet50_0.0003
+[ Sat Dec 31 00:53:45 2022 ] Model total number of params: 24353892
+[ Sat Dec 31 00:53:45 2022 ] Weight decay: 0.0004
+[ Sat Dec 31 00:53:45 2022 ] Base LR: 0.0003
+[ Sat Dec 31 00:53:45 2022 ] Batch Size: 128
+[ Sat Dec 31 00:53:45 2022 ] Test Batch Size: 128
+[ Sat Dec 31 00:53:45 2022 ] seed: 1

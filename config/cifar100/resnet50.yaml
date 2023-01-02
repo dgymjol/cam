@@ -31,7 +31,6 @@ test_feeder_args:
 model: model.ResNet50.ResNet50
 model_args:
   in_channel: 3
-  size: 32
 
 #optim
 weight_decay: 0.0004
@@ -42,3 +41,6 @@ device: [0,1]
 batch_size: 128
 test_batch_size: 128
 num_epoch: 30
+
+# scheduler
+scheduler: StepLR

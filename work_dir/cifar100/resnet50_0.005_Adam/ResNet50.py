@@ -8,11 +8,9 @@ def import_class(name):
         mod = getattr(mod, comp)
     return mod
     
-class ResNet50_cam(nn.Module):
-    def __init__(self, in_channel, num_classes):
+class ResNet50(nn.Module):
+    def __init__(self, in_channel, size):
         super().__init__()
-
-        self.num_classes = num_classes
 
         ## conv1 : 7x7 64 stride 2
         self.conv1 = nn.Conv2d(in_channel, 64, 7, stride=2, padding=7)
@@ -36,18 +34,20 @@ class ResNet50_cam(nn.Module):
 
         self.rbs = nn.Sequential(*residual_blocks)
 
-        self.w = nn.Conv2d(2048, self.num_classes, 1, bias = False) # conv weight => (num_classes, k, 1, 1)
+        ## avg pooling, fc layer, softmax 
+        self.ap = nn.AvgPool2d(3, stride=2)
+        self.fc = nn.Linear(in_features=2048, out_features=100)
+        # self.softmax = nn.Softmax(dim=1)
 
     def forward(self, x):
         x = self.mp(self.bn(self.conv1(x)))
         x = self.rbs(x)
+        x = self.ap(x)
+        x = x.reshape(x.shape[0], -1)
+        x = self.fc(x)
+        # x = self.softmax(x)
 
-        # x = x.reshape(x.shape[0], x.shape[1], -1)
-        # gap = torch.mean(x, 2)
-        GAP = self.w(x)
-        S_c = torch.sum(GAP.reshape(GAP.shape[0], self.num_classes, -1), 2)
-
-        return S_c
+        return x
 
 
 class Residual_blocks(nn.Module):

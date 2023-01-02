@@ -1,0 +1,54 @@
+# commend line: main.py --work-dir work-dir/cifar100/resent50_0.005_aug --base-lr 0.005 --num-epoch 50 --device 0 1
+
+base_lr: 0.005
+batch_size: 128
+config: ./config/cifar100/resnet50.yaml
+device:
+- 0
+- 1
+feeder: cifar100
+ignore_weights: []
+log_interval: 10
+loss: CrossEntropyLoss
+model: model.ResNet50.ResNet50
+model_args:
+  in_channel: 3
+  size: 32
+model_saved_name: resnet50
+num_classes: 100
+num_epoch: 50
+num_worker: 8
+optimizer: SGD
+save_epoch: 30
+save_interval: 10
+scheduler: ReduceLROnPlateau
+seed: 1
+start_epoch: 0
+test_batch_size: 128
+test_feeder_args:
+  bone: false
+  data_path: data/oad/oad.npz
+  debug: false
+  p_interval:
+  - 0.95
+  split: test
+  vel: false
+  window_size: 32
+train_feeder_args:
+  bone: false
+  data_path: data/oad/oad.npz
+  debug: false
+  normalization: false
+  p_interval:
+  - 0.5
+  - 1
+  random_choose: false
+  random_move: false
+  random_rot: false
+  random_shift: false
+  split: train
+  vel: false
+  window_size: 32
+weight_decay: 0.0004
+weights: null
+work_dir: work-dir/cifar100/resent50_0.005_aug

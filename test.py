@@ -12,10 +12,10 @@ import pdb
 from tensorboardX import SummaryWriter
 import time
 import argparse
-from torchlight import DictAction
 
 from model import ResNet50
 from sklearn.metrics import top_k_accuracy_score
+from model.ResNet50_cam import ResNet50_cam
 
 
 def init_seed(seed):
@@ -48,11 +48,12 @@ args = parser.parse_args()
 
 init_seed(1)
 
-transform = transforms.Compose([
-    transforms.Resize((32*8, 32*8)),
-    # 0~1의 범위를 가지도록 정규화
-    transforms.ToTensor()
-])
+transform = transforms.Compose([    transforms.Resize((32*8, 32*8)),
+                                    transforms.RandomCrop(224),
+                                    transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.2),
+                                    transforms.RandomHorizontalFlip(p = 1),
+                                    transforms.ToTensor()
+                                ])
 
 train_dataset = datasets.CIFAR100(root='./data',
                                   train=True,
@@ -76,7 +77,7 @@ use_cuda = torch.cuda.is_available()                   # check if GPU exists
 DEVICE = torch.device("cuda" if use_cuda else "cpu")   # use CPU or GPU
 print(f"DEVICE : {DEVICE}")
 
-model = ResNet50().to(DEVICE)
+model = ResNet50_cam(in_channel=3, num_classes = 100).to(DEVICE)
 optimizer = optim.Adam(model.parameters(), lr=args.lr, )
 # scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'max', patience=5, factor = 0.5, verbose = True)
 lossfn = nn.CrossEntropyLoss().to(DEVICE)
@@ -101,27 +102,31 @@ for batch_idx, (data, label) in enumerate(train_loader) :
     with torch.no_grad():
         data = data.to(DEVICE)
         label = label.to(DEVICE)
+
         # label = F.one_hot(label)
-        data = data.to(DEVICE)
-        label = label.to(DEVICE)
+        # data = data.to(DEVICE)
+        # label = label.to(DEVICE)
         output = model(data)
-
+        print(output.shape)
+        breakpoint()
         loss = lossfn(output, label)
-        loss_value.append(loss.data.item())
-        pred_scores.append(output.cpu().numpy())
-        labels.append(label.cpu().numpy())
+        print(loss)
+        exit()
+        # loss_value.append(loss.data.item())
+        # pred_scores.append(output.cpu().numpy())
+        # labels.append(label.cpu().numpy())
 
-labels = np.concatenate(labels)
-pred_scores = np.concatenate(pred_scores)
+# labels = np.concatenate(labels)
+# pred_scores = np.concatenate(pred_scores)
 
-breakpoint()
+# breakpoint()
 
-top1_acc = top_k_accuracy_score(label.detach().cpu().numpy(), output.detach().cpu().numpy(), k=1, labels=np.arange(self.arg.num_class))
-top5_acc = top_k_accuracy_score(label.detach().cpu().numpy(), output.detach().cpu().numpy(), k=5, labels=np.arange(self.arg.num_class))
-top1_value.append(top1_acc)
-top5_value.append(top5_acc)       
+# top1_acc = top_k_accuracy_score(label.detach().cpu().numpy(), output.detach().cpu().numpy(), k=1, labels=np.arange(self.arg.num_class))
+# top5_acc = top_k_accuracy_score(label.detach().cpu().numpy(), output.detach().cpu().numpy(), k=5, labels=np.arange(self.arg.num_class))
+# top1_value.append(top1_acc)
+# top5_value.append(top5_acc)       
     
-top_k_accuracy_score(labels, pred_scores, k=1, labels=np.arange(100))
+# top_k_accuracy_score(labels, pred_scores, k=1, labels=np.arange(100))
     # print(data.shape)
     # print(label.shape)
     # print(label[1:10])

@@ -1,0 +1,66 @@
+[ Mon Jan  2 10:17:13 2023 ] Train epoch: 1
+[ Mon Jan  2 10:26:33 2023 ] Train epoch: 1
+[ Mon Jan  2 10:35:19 2023 ] 	 Mean training loss: 4.1145. Mean training top_1_acc: 7.69%. Mean training top_5_acc: 24.38% 
+[ Mon Jan  2 10:35:19 2023 ] evaluation epoch: 1
+[ Mon Jan  2 10:36:49 2023 ] 	 Mean training loss: 3.6986. Mean training top_1_acc: 13.49%. Mean training top_5_acc: 36.71% 
+[ Mon Jan  2 10:36:49 2023 ] Train epoch: 2
+[ Mon Jan  2 10:45:21 2023 ] 	 Mean training loss: 3.4993. Mean training top_1_acc: 16.82%. Mean training top_5_acc: 42.15% 
+[ Mon Jan  2 10:45:21 2023 ] evaluation epoch: 2
+[ Mon Jan  2 10:46:53 2023 ] 	 Mean training loss: 3.2983. Mean training top_1_acc: 19.96%. Mean training top_5_acc: 47.07% 
+[ Mon Jan  2 10:46:53 2023 ] Train epoch: 3
+[ Mon Jan  2 10:55:29 2023 ] 	 Mean training loss: 3.1268. Mean training top_1_acc: 23.45%. Mean training top_5_acc: 51.78% 
+[ Mon Jan  2 10:55:29 2023 ] evaluation epoch: 3
+[ Mon Jan  2 10:56:56 2023 ] 	 Mean training loss: 3.0211. Mean training top_1_acc: 25.56%. Mean training top_5_acc: 54.28% 
+[ Mon Jan  2 10:56:56 2023 ] Train epoch: 4
+[ Mon Jan  2 11:05:15 2023 ] 	 Mean training loss: 2.8204. Mean training top_1_acc: 29.08%. Mean training top_5_acc: 59.65% 
+[ Mon Jan  2 11:05:15 2023 ] evaluation epoch: 4
+[ Mon Jan  2 11:07:08 2023 ] 	 Mean training loss: 2.7928. Mean training top_1_acc: 30.19%. Mean training top_5_acc: 60.16% 
+[ Mon Jan  2 11:07:08 2023 ] Train epoch: 5
+[ Mon Jan  2 11:15:27 2023 ] 	 Mean training loss: 2.5550. Mean training top_1_acc: 34.62%. Mean training top_5_acc: 65.70% 
+[ Mon Jan  2 11:15:27 2023 ] evaluation epoch: 5
+[ Mon Jan  2 11:17:01 2023 ] 	 Mean training loss: 2.5815. Mean training top_1_acc: 35.31%. Mean training top_5_acc: 64.64% 
+[ Mon Jan  2 11:17:01 2023 ] Train epoch: 6
+[ Mon Jan  2 11:25:22 2023 ] 	 Mean training loss: 2.3103. Mean training top_1_acc: 39.69%. Mean training top_5_acc: 71.09% 
+[ Mon Jan  2 11:25:22 2023 ] evaluation epoch: 6
+[ Mon Jan  2 11:27:07 2023 ] 	 Mean training loss: 2.4226. Mean training top_1_acc: 37.24%. Mean training top_5_acc: 68.38% 
+[ Mon Jan  2 11:27:07 2023 ] Train epoch: 7
+[ Mon Jan  2 11:35:37 2023 ] 	 Mean training loss: 2.1039. Mean training top_1_acc: 44.04%. Mean training top_5_acc: 75.14% 
+[ Mon Jan  2 11:35:37 2023 ] evaluation epoch: 7
+[ Mon Jan  2 11:37:05 2023 ] 	 Mean training loss: 2.2684. Mean training top_1_acc: 41.96%. Mean training top_5_acc: 71.59% 
+[ Mon Jan  2 11:37:05 2023 ] Train epoch: 8
+[ Mon Jan  2 11:45:47 2023 ] 	 Mean training loss: 1.7282. Mean training top_1_acc: 52.83%. Mean training top_5_acc: 82.10% 
+[ Mon Jan  2 11:45:47 2023 ] evaluation epoch: 8
+[ Mon Jan  2 11:47:16 2023 ] 	 Mean training loss: 2.0556. Mean training top_1_acc: 45.96%. Mean training top_5_acc: 75.35% 
+[ Mon Jan  2 11:47:16 2023 ] Train epoch: 9
+[ Mon Jan  2 11:55:58 2023 ] 	 Mean training loss: 1.5792. Mean training top_1_acc: 56.38%. Mean training top_5_acc: 84.66% 
+[ Mon Jan  2 11:55:58 2023 ] evaluation epoch: 9
+[ Mon Jan  2 11:57:32 2023 ] 	 Mean training loss: 2.0010. Mean training top_1_acc: 47.05%. Mean training top_5_acc: 76.54% 
+[ Mon Jan  2 11:57:32 2023 ] Train epoch: 10
+[ Mon Jan  2 12:06:18 2023 ] 	 Mean training loss: 1.4617. Mean training top_1_acc: 59.06%. Mean training top_5_acc: 86.61% 
+[ Mon Jan  2 12:06:18 2023 ] evaluation epoch: 10
+[ Mon Jan  2 12:07:55 2023 ] 	 Mean training loss: 2.0084. Mean training top_1_acc: 47.38%. Mean training top_5_acc: 76.20% 
+[ Mon Jan  2 12:07:55 2023 ] Train epoch: 11
+[ Mon Jan  2 12:16:47 2023 ] 	 Mean training loss: 1.3519. Mean training top_1_acc: 61.79%. Mean training top_5_acc: 88.39% 
+[ Mon Jan  2 12:16:47 2023 ] evaluation epoch: 11
+[ Mon Jan  2 12:18:34 2023 ] 	 Mean training loss: 1.9694. Mean training top_1_acc: 48.85%. Mean training top_5_acc: 77.60% 
+[ Mon Jan  2 12:18:34 2023 ] Train epoch: 12
+[ Mon Jan  2 12:27:16 2023 ] 	 Mean training loss: 1.2473. Mean training top_1_acc: 64.28%. Mean training top_5_acc: 90.04% 
+[ Mon Jan  2 12:27:16 2023 ] evaluation epoch: 12
+[ Mon Jan  2 12:28:53 2023 ] 	 Mean training loss: 2.0038. Mean training top_1_acc: 48.24%. Mean training top_5_acc: 77.49% 
+[ Mon Jan  2 12:28:53 2023 ] Train epoch: 13
+[ Mon Jan  2 12:37:43 2023 ] 	 Mean training loss: 1.1359. Mean training top_1_acc: 67.36%. Mean training top_5_acc: 91.47% 
+[ Mon Jan  2 12:37:43 2023 ] evaluation epoch: 13
+[ Mon Jan  2 12:39:25 2023 ] 	 Mean training loss: 1.9929. Mean training top_1_acc: 48.69%. Mean training top_5_acc: 78.22% 
+[ Mon Jan  2 12:39:25 2023 ] Train epoch: 14
+[ Mon Jan  2 12:48:21 2023 ] 	 Mean training loss: 0.8490. Mean training top_1_acc: 75.58%. Mean training top_5_acc: 95.07% 
+[ Mon Jan  2 12:48:21 2023 ] evaluation epoch: 14
+[ Mon Jan  2 12:50:10 2023 ] 	 Mean training loss: 1.9351. Mean training top_1_acc: 50.78%. Mean training top_5_acc: 79.37% 
+[ Mon Jan  2 12:50:10 2023 ] Train epoch: 15
+[ Mon Jan  2 12:59:05 2023 ] 	 Mean training loss: 0.7365. Mean training top_1_acc: 78.84%. Mean training top_5_acc: 96.33% 
+[ Mon Jan  2 12:59:05 2023 ] evaluation epoch: 15
+[ Mon Jan  2 13:00:33 2023 ] 	 Mean training loss: 1.9060. Mean training top_1_acc: 51.36%. Mean training top_5_acc: 79.79% 
+[ Mon Jan  2 13:00:33 2023 ] Train epoch: 16
+[ Mon Jan  2 13:09:43 2023 ] 	 Mean training loss: 0.6595. Mean training top_1_acc: 81.06%. Mean training top_5_acc: 96.99% 
+[ Mon Jan  2 13:09:43 2023 ] evaluation epoch: 16
+[ Mon Jan  2 13:11:16 2023 ] 	 Mean training loss: 1.9588. Mean training top_1_acc: 51.35%. Mean training top_5_acc: 79.67% 
+[ Mon Jan  2 13:11:16 2023 ] Train epoch: 17

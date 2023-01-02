@@ -17,6 +17,7 @@ import pdb
 import inspect
 import shutil
 from collections import OrderedDict
+from RandAugment import RandAugment
 
 class Processor():
 
@@ -80,12 +81,15 @@ class Processor():
         self.data_loader = dict()
 
         if self.arg.feeder == 'cifar100':
-            transform = transforms.Compose([
+            _CIFAR_MEAN, _CIFAR_STD = (0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)
+
+            transform = transforms.Compose([    transforms.Resize((32*8, 32*8)),
+                                                transforms.RandomCrop(224),
+                                                transforms.RandomHorizontalFlip(),
                                                 transforms.ToTensor(),
-                                                transforms.Resize((32*8, 32*8))
-                                                # 0~1의 범위를 가지도록 정규화
-                                                
+                                                transforms.Normalize(_CIFAR_MEAN, _CIFAR_STD)
                                             ])
+            transform.transforms.insert(0, RandAugment(2, 9))
 
             train_dataset = datasets.CIFAR100(root='./data',
                                             train=True,
@@ -140,6 +144,8 @@ class Processor():
     def load_scheduler(self):
         if self.arg.scheduler == 'ReduceLROnPlateau':
             self.scheduler = optim.lr_scheduler.ReduceLROnPlateau(self.optimizer, 'max', patience=5, factor = 0.5, verbose = True)
+        elif self.arg.scheduler == 'StepLR':
+            self.scheduler = optim.lr_scheduler.StepLR(self.optimizer, step_size=200, gamma=0.5)
         else:
             raise Exception(f"There is no {self.arg.scheduler}. Add it in load_scheduler() & step argument")
             
