@@ -31,6 +31,7 @@ test_feeder_args:
 model: model.ResNet50.ResNet50
 model_args:
   in_channel: 3
+  num_classes: 100
 
 #optim
 weight_decay: 0.0004

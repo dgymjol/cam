@@ -1,4 +1,5 @@
-data/cifar-100-python
+data
+*.taz
 *.tar.gz
 *.pt
 __pycache__

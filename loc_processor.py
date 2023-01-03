@@ -19,7 +19,7 @@ import shutil
 from collections import OrderedDict
 from RandAugment import RandAugment
 
-class Processor():
+class Loc_Processor():
 
     def __init__(self, arg):
         self.arg = arg
@@ -77,50 +77,21 @@ class Processor():
         torch.backends.cudnn.benchmark = False
 
     def load_data(self):
-    
+        
+        # breakpoint()
         self.data_loader = dict()
 
-        if self.arg.feeder == 'cifar100':
-            _CIFAR_MEAN, _CIFAR_STD = (0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)
-
-            transform = transforms.Compose([    transforms.Resize((32*8, 32*8)),
-                                                transforms.RandomCrop(224),
-                                                transforms.RandomHorizontalFlip(),
-                                                transforms.ToTensor(),
-                                                transforms.Normalize(_CIFAR_MEAN, _CIFAR_STD)
-                                            ])
-            transform.transforms.insert(0, RandAugment(2, 9))
-
-            train_dataset = datasets.CIFAR100(root='./data',
-                                            train=True,
-                                            download=True,
-                                            transform=transform)
-            test_dataset = datasets.CIFAR100(root='./data',
-                                            train=False,
-                                            download=True,
-                                            transform=transform)
-
-            self.data_loader['train']  = DataLoader(dataset=train_dataset,
-                                                    batch_size=self.arg.batch_size,
-                                                    shuffle=True,
-                                                    num_workers=self.arg.num_worker)
-
-            self.data_loader['eval'] = DataLoader(dataset=test_dataset,
-                                                    batch_size=self.arg.test_batch_size,
-                                                    shuffle=True,
-                                                    num_workers=self.arg.num_worker)           
-        else:
-            Feeder = self.import_class(self.arg.feeder)
-            self.data_loader['train'] = torch.utils.data.DataLoader(
-                                        datdaset=Feeder(**self.arg.train_feeder_args),
-                                        batch_size=self.arg.batch_size,
-                                        shuffle=True,
-                                        num_workers=self.arg.num_worker)
-            self.data_loader['eval'] = torch.utils.data.DataLoader(
-                                        datdaset=Feeder(**self.arg.test_feeder_args),
-                                        batch_size=self.arg.test_batch_size,
-                                        shuffle=False,
-                                        num_workers=self.arg.num_worker)
+        Feeder = self.import_class(self.arg.feeder)
+        self.data_loader['train'] = torch.utils.data.DataLoader(
+                                    dataset=Feeder(**self.arg.train_feeder_args),
+                                    batch_size=self.arg.batch_size,
+                                    shuffle=True,
+                                    num_workers=self.arg.num_worker)
+        self.data_loader['eval'] = torch.utils.data.DataLoader(
+                                    dataset=Feeder(**self.arg.test_feeder_args),
+                                    batch_size=self.arg.test_batch_size,
+                                    shuffle=False,
+                                    num_workers=self.arg.num_worker)
 
     def load_model(self):
         self.output_device = self.arg.device[0] if type(self.arg.device) is list else self.arg.device
@@ -175,7 +146,9 @@ class Processor():
 
         self.train_writer.add_scalar('epoch', epoch, self.global_step)
 
-        for batch_idx, (data, label) in enumerate(self.data_loader['train']) :
+        for batch_idx, (data, label, index) in enumerate(self.data_loader['train']) :
+            breakpoint()
+
             self.global_step += 1
 
             with torch.no_grad():
@@ -224,7 +197,7 @@ class Processor():
 
         self.train_writer.add_scalar('epoch', epoch, self.global_step)
 
-        for batch_idx, (data, label) in enumerate(self.data_loader['eval']) :
+        for batch_idx, (data, label, index) in enumerate(self.data_loader['eval']) :
             self.global_step += 1
 
             with torch.no_grad():

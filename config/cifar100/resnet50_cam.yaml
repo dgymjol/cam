@@ -1,37 +1,22 @@
-work_dir: ./work_dir/cifar100/resent50_cam
+work_dir: ./work_dir/cub/resent50_cam
 
 # feeder
-feeder: cifar100
+feeder: feeders.cub.Feeder
 num_classes : 100
 num_worker : 8
 train_feeder_args:
-  data_path: data/oad/oad.npz
-  split: train
-  debug: False
-  random_choose: False
-  random_shift: False
-  random_move: False
-  window_size: 32
-  normalization: False
-  random_rot: False
-  p_interval: [0.5, 1]
-  vel: False
-  bone: False
+  data_path: data/CUB_200_2011
+  phase: train
 
 test_feeder_args:
-  data_path: data/oad/oad.npz
-  split: test
-  window_size: 32
-  p_interval: [0.95]
-  vel: False
-  bone: False
-  debug: False
+  data_path: data/CUB_200_2011
+  phase: test
 
 # model
 model: model.ResNet50_cam.ResNet50_cam
 model_args:
   in_channel: 3
-  num_classes: 100
+  num_classes: 200
 
 #optim
 weight_decay: 0.0004
