@@ -136,7 +136,7 @@ class Loc_Processor():
             print(str, file=f)
             
     def train(self, epoch, save_model=False):
-        self.print_log('Train epoch: {}'.format(epoch + 1))
+        self.print_log('** epoch: {}'.format(epoch + 1))
 
         loss_value = []
         top1_value = []
@@ -187,8 +187,6 @@ class Loc_Processor():
 
 
     def eval(self, epoch):
-        self.print_log('evaluation epoch: {}'.format(epoch + 1))
-
         loss_value = []
         labels = []
         pred_scores = []
@@ -223,7 +221,7 @@ class Loc_Processor():
             weights = OrderedDict([[k.split('module.')[-1], v.cpu()] for k, v in state_dict.items()])
             torch.save(weights, self.arg.model_saved_name + '-' + str(epoch+1) + '.pt')
 
-        self.print_log("\t Mean training loss: {:.4f}. Mean training top_1_acc: {:.2f}%. Mean training top_5_acc: {:.2f}% ".format(np.mean(loss_value), top1_acc * 100, top5_acc * 100))
+        self.print_log("\t Mean test loss: {:.4f}. Mean test top_1_acc: {:.2f}%. Mean test top_5_acc: {:.2f}% ".format(np.mean(loss_value), top1_acc * 100, top5_acc * 100))
 
         self.val_writer.add_scalar('lr', self.lr, self.global_step)
         self.val_writer.add_scalar('top1', top1_acc, self.global_step)

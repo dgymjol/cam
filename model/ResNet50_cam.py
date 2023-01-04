@@ -9,13 +9,13 @@ def import_class(name):
     return mod
     
 class ResNet50_cam(nn.Module):
-    def __init__(self, in_channel, num_classes):
+    def __init__(self, num_classes):
         super().__init__()
 
         self.num_classes = num_classes
 
         ## conv1 : 7x7 64 stride 2
-        self.conv1 = nn.Conv2d(in_channel, 64, 7, stride=2, padding=7, bias=False)
+        self.conv1 = nn.Conv2d(3, 64, 7, stride=2, padding=3, bias=False)
         self.bn = nn.BatchNorm2d(64)
         self.relu = nn.ReLU(inplace=True)
 
@@ -24,28 +24,31 @@ class ResNet50_cam(nn.Module):
 
         residual_blocks = []
         ## conv2 : bottleneck 64, out 256, num 3
-        residual_blocks.append(Residual_blocks(in_channel=64, bottleneck_channel=64, out_channel=256, block_num=3))
+        residual_blocks.append(Residual_blocks(in_channel=64, bottleneck_channel=64, out_channel=256, block_num=3, first_layer=True))
 
-        ## conv3 : bottleneck 128, out 512, num 4
-        residual_blocks.append(Residual_blocks(in_channel=256, bottleneck_channel=128, out_channel=512, block_num=4))
+        # conv3 : bottleneck 128, out 512, num 4
+        residual_blocks.append(Residual_blocks(in_channel=256, bottleneck_channel=128, out_channel=512, block_num=4, first_layer=False))
 
         ## conv4 : bottleneck 256, out 1024, num 6
-        residual_blocks.append(Residual_blocks(in_channel=512, bottleneck_channel=256, out_channel=1024, block_num=6))
+        residual_blocks.append(Residual_blocks(in_channel=512, bottleneck_channel=256, out_channel=1024, block_num=6, first_layer=False))
 
-        ## conv5 : bottleneck 512, out 2048, num 3
-        residual_blocks.append(Residual_blocks(in_channel=1024, bottleneck_channel=512, out_channel=2048, block_num=3))
+        # conv5 : bottleneck 512, out 2048, num 3  => Remove to increse map resolution
+        # residual_blocks.append(Residual_blocks(in_channel=1024, bottleneck_channel=512, out_channel=2048, block_num=3, first_layer=False))
 
         self.rbs = nn.Sequential(*residual_blocks)
 
-        self.w = nn.Conv2d(2048, self.num_classes, 1, bias = False) # conv weight => (num_classes, k, 1, 1)
+        self.final_conv = nn.Conv2d(1024, 1024, 3, stride=1, padding=1, bias=False)
+
+        self.w = nn.Conv2d(1024, self.num_classes, 1, bias = False) # conv weight => (num_classes, k, 1, 1)
 
     def forward(self, x):
         x = self.mp(self.relu(self.bn(self.conv1(x))))
         x = self.rbs(x)
+        x = self.final_conv(x)
 
         GAP = self.w(x)
         S_c = torch.sum(GAP.reshape(GAP.shape[0], self.num_classes, -1), 2)
-        
+
         return GAP, S_c
 
 
@@ -54,11 +57,15 @@ class Residual_blocks(nn.Module):
                  in_channel, 
                  bottleneck_channel, 
                  out_channel, 
-                 block_num):
+                 block_num,
+                 first_layer):
         super().__init__()
 
         blocks = []
-        blocks.append(Residual_block(in_channel, bottleneck_channel, out_channel, 2))
+        if first_layer:
+            blocks.append(Residual_block(in_channel, bottleneck_channel, out_channel, 1))
+        else:
+            blocks.append(Residual_block(in_channel, bottleneck_channel, out_channel, 2))
 
         for i in range(block_num - 1):
             blocks.append(Residual_block(out_channel, bottleneck_channel, out_channel, 1))
@@ -92,8 +99,12 @@ class Residual_block(nn.Module):
         self.bn3 = nn.BatchNorm2d(out_channel)
 
         if stride == 1:
-            self.shortcut = nn.Sequential(nn.Identity(),
-                                          nn.BatchNorm2d(out_channel))
+            if in_channel == out_channel:
+                self.shortcut = nn.Sequential(nn.Identity(),
+                                              nn.BatchNorm2d(out_channel))
+            else:
+                self.shortcut = nn.Sequential(nn.Conv2d(in_channel, out_channel, 1, bias=False),
+                                              nn.BatchNorm2d(out_channel))
         elif stride == 2:
             self.shortcut = nn.Sequential(nn.Conv2d(in_channel, out_channel, 1, stride=stride, bias=False),
                                           nn.BatchNorm2d(out_channel))
@@ -104,8 +115,8 @@ class Residual_block(nn.Module):
     def forward(self, x):
         out = self.relu1(self.bn1(self.conv1(x)))
         out = self.relu2(self.bn2(self.conv2(out)))
-        out1 = self.bn3(self.conv3(out))
+        out = self.bn3(self.conv3(out))
 
-        out2 = self.shortcut(x)
+        sc = self.shortcut(x)
 
-        return out1+out2
+        return out+sc
