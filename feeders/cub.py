@@ -5,7 +5,6 @@ import pickle
 import os
 import torchvision.transforms as transforms
 from PIL import Image
-from RandAugment import RandAugment
 
 
 class Feeder(Dataset):
@@ -54,7 +53,7 @@ class Feeder(Dataset):
             id = self.image_ids['train'][index]
             
         elif self.phase == 'test':
-            id = self.image_ids['train'][index]
+            id = self.image_ids['test'][index]
         else :
             raise Exception("neither train or test")
 
