@@ -1,12 +1,15 @@
 import torch
 from torch.utils.data import Dataset
+from torch.utils.data import DataLoader
 import pickle
 import os
 import torchvision.transforms as transforms
 from PIL import Image
+from RandAugment import RandAugment
+
 
 class Feeder(Dataset):
-    def __init__(self, data_path, phase):
+    def __init__(self, data_path='data/CUB_200_2011', phase='train'):
         # super(Feeder, self).__init__()
         self.num_classes = 200
         self.phase = phase
@@ -24,12 +27,14 @@ class Feeder(Dataset):
         with open(gt_path, 'rb') as fr:
             self.gt = pickle.load(fr)
 
+        self.transform = transforms.Compose([ transforms.Resize((224, 224)),
+                                              transforms.ToTensor(),
+                                            ])
 
-        self.transform = transforms.Compose([    transforms.Resize((224, 224)),
-                                            transforms.ToTensor(),
-                                            # transforms.Normalize(_CIFAR_MEAN, _CIFAR_STD)
-                                        ])
-        
+        self.normalize = transforms.Compose([ transforms.Normalize( mean=[0.4856, 0.4993, 0.4322],
+                                                            std=[0.2250, 0.2205, 0.2548] )
+                                    ])
+
     def __len__(self):
         if self.phase == 'train':
             return len(self.image_ids['train'])
@@ -54,12 +59,41 @@ class Feeder(Dataset):
             raise Exception("neither train or test")
 
         image = self.data[id]
-        width, height = image.size
+        w, h = image.size
         tensor = self.transform(image)
-        data = [tensor, [width, height]]
         label = self.gt[id]
+
+        if tensor.shape != (3, 224, 224): #grayscale
+            tensor = tensor.expand(3,224, 224)
+        tensor = self.normalize(tensor)
         
-        return torch.tensor(data), torch.tensor(label), index
+        return {"image_data": tensor, "image_size": torch.tensor([w, h]), 
+                "gt_cls": torch.tensor(label[0]-1).long(), "gt_box": torch.tensor(label[1])}
+
+
+def find_mean_std():
+    # https://eehoeskrap.tistory.com/463
+    data_loader = DataLoader( dataset=Feeder('../data/CUB_200_2011'),
+                              batch_size=128,
+                              shuffle=False,
+                              num_workers=8)
+    mean = torch.zeros(3)
+    std = torch.zeros(3)
+    for batch_idx, item in enumerate(data_loader) :
+        with torch.no_grad():
+            data = item['image_data']# (batchsize, 3, 224, 224)
+            # breakpoint()
+            for i in range(3):
+                try: 
+                    mean[i] += data[:, i, :, :].mean()
+                    std[i] += data[:, i, :, :].std()
+                except:
+                    breakpoint()
+    mean.div_(len(data_loader))
+    std.div_(len(data_loader))
+    #tensor([0.4856, 0.4993, 0.4322]) : mean
+    #tensor([0.2250, 0.2205, 0.2548]) : std
+    return mean, std
 
 def import_class(name):
     components = name.split('.')

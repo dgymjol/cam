@@ -17,8 +17,9 @@ import pdb
 import inspect
 import shutil
 from collections import OrderedDict
+from RandAugment import RandAugment
 
-class Loc_Processor():
+class Processor():
 
     def __init__(self, arg):
         self.arg = arg
@@ -76,20 +77,48 @@ class Loc_Processor():
         torch.backends.cudnn.benchmark = False
 
     def load_data(self):
-        
+    
         self.data_loader = dict()
 
-        Feeder = self.import_class(self.arg.feeder)
-        self.data_loader['train'] = DataLoader(
-                                    dataset=Feeder(**self.arg.train_feeder_args),
-                                    batch_size=self.arg.batch_size,
-                                    shuffle=False,
-                                    num_workers=self.arg.num_worker)
-        self.data_loader['eval'] =  DataLoader(
-                                    dataset=Feeder(**self.arg.test_feeder_args),
-                                    batch_size=self.arg.test_batch_size,
-                                    shuffle=False,
-                                    num_workers=self.arg.num_worker)
+        if self.arg.feeder == 'cifar100':
+            _CIFAR_MEAN, _CIFAR_STD = (0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)
+
+            transform = transforms.Compose([    transforms.Resize((32*8, 32*8)),
+                                                transforms.RandomCrop(224),
+                                                transforms.RandomHorizontalFlip(),
+                                                transforms.ToTensor(),
+                                                transforms.Normalize(_CIFAR_MEAN, _CIFAR_STD)
+                                            ])
+            transform.transforms.insert(0, RandAugment(2, 9))
+
+            train_dataset = datasets.CIFAR100(root='./data',
+                                            train=True,
+                                            download=True,
+                                            transform=transform)
+            test_dataset = datasets.CIFAR100(root='./data',
+                                            train=False,
+                                            download=True,
+                                            transform=transform)
+
+            self.data_loader['train']  = DataLoader(dataset=train_dataset,
+                                                    batch_size=self.arg.batch_size,
+                                                    shuffle=True)
+
+            self.data_loader['eval'] = DataLoader(dataset=test_dataset,
+                                                    batch_size=self.arg.test_batch_size,
+                                                    shuffle=True)           
+        else:
+            Feeder = self.import_class(self.arg.feeder)
+            self.data_loader['train'] = torch.utils.data.DataLoader(
+                                        datdaset=Feeder(**self.arg.train_feeder_args),
+                                        batch_size=self.arg.batch_size,
+                                        shuffle=True,
+                                        num_workes=self.arg.num_worker)
+            self.data_loader['eval'] = torch.utils.data.DataLoader(
+                                        datdaset=Feeder(**self.arg.test_feeder_args),
+                                        batch_size=self.arg.test_batch_size,
+                                        shuffle=False,
+                                        num_workes=self.arg.num_worker)
 
     def load_model(self):
         self.output_device = self.arg.device[0] if type(self.arg.device) is list else self.arg.device
@@ -144,18 +173,16 @@ class Loc_Processor():
 
         self.train_writer.add_scalar('epoch', epoch, self.global_step)
 
-        for batch_idx, item in enumerate(self.data_loader['train']) :
+        for batch_idx, (data, label) in enumerate(self.data_loader['train']) :
             self.global_step += 1
 
             with torch.no_grad():
-                data = item['image_data'].cuda(self.output_device) # (batchsize, 3, 224, 224)
-                # image_size = item['image_size'] # (batch_size, 2) : (width, height)
-                gt_cls = item['gt_cls'].cuda(self.output_device) # (batchsize,)
-                # gt_box = item['gt_box'].cuda(self.output_device) # (batchsize, 4) : (x, y, width, height)
-        
+                data = data.cuda(self.output_device)
+                label = label.cuda(self.output_device)
+            
             # forward
-            output = self.model(data)[1]
-            loss = self.loss(output, gt_cls)
+            output = self.model(data)
+            loss = self.loss(output, label)
 
             # backward
             self.optimizer.zero_grad()
@@ -163,8 +190,8 @@ class Loc_Processor():
             self.optimizer.step()
 
             loss_value.append(loss.data.item())
-            top1_acc = top_k_accuracy_score(gt_cls.detach().cpu().numpy(), output.detach().cpu().numpy(), k=1, labels=np.arange(self.arg.num_classes))
-            top5_acc = top_k_accuracy_score(gt_cls.detach().cpu().numpy(), output.detach().cpu().numpy(), k=5, labels=np.arange(self.arg.num_classes))
+            top1_acc = top_k_accuracy_score(label.detach().cpu().numpy(), output.detach().cpu().numpy(), k=1, labels=np.arange(self.arg.num_classes))
+            top5_acc = top_k_accuracy_score(label.detach().cpu().numpy(), output.detach().cpu().numpy(), k=5, labels=np.arange(self.arg.num_classes))
             top1_value.append(top1_acc)
             top5_value.append(top5_acc)
 
@@ -195,26 +222,24 @@ class Loc_Processor():
 
         self.train_writer.add_scalar('epoch', epoch, self.global_step)
 
-        for batch_idx, item in enumerate(self.data_loader['eval']) :
+        for batch_idx, (data, label) in enumerate(self.data_loader['eval']) :
             self.global_step += 1
 
             with torch.no_grad():
-                data = item['image_data'].cuda(self.output_device) # (batchsize, 3, 224, 224)
-                # image_size = item['image_size'] # (batch_size, 2) : (width, height)
-                gt_cls = item['gt_cls'].cuda(self.output_device) # (batchsize,)
-                # gt_box = item['gt_box'].cuda(self.output_device) # (batchsize, 4) : (x, y, width, height)
-                output = self.model(data)[1]
+                data = data.cuda(self.output_device)
+                label = label.cuda(self.output_device)
+                output = self.model(data)
 
-                loss = self.loss(output, gt_cls.long())
+                loss = self.loss(output, label)
                 loss_value.append(loss.data.item())
                 pred_scores.append(output.cpu().numpy())
-                labels.append(gt_cls.cpu().numpy())
+                labels.append(label.cpu().numpy())
 
-        gt_clses = np.concatenate(labels)
+        labels = np.concatenate(labels)
         pred_scores = np.concatenate(pred_scores)
 
-        top1_acc = top_k_accuracy_score(gt_clses, pred_scores, k=1, labels=np.arange(self.arg.num_classes))
-        top5_acc = top_k_accuracy_score(gt_clses, pred_scores, k=5, labels=np.arange(self.arg.num_classes))
+        top1_acc = top_k_accuracy_score(labels, pred_scores, k=1, labels=np.arange(self.arg.num_classes))
+        top5_acc = top_k_accuracy_score(labels, pred_scores, k=5, labels=np.arange(self.arg.num_classes))
         
         if top1_acc > self.best_top1:
             self.best_top1 = top1_acc

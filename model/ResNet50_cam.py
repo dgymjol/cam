@@ -45,6 +45,7 @@ class ResNet50_cam(nn.Module):
 
         GAP = self.w(x)
         S_c = torch.sum(GAP.reshape(GAP.shape[0], self.num_classes, -1), 2)
+        
         return GAP, S_c
 
 
