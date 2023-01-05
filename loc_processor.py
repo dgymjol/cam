@@ -22,6 +22,12 @@ class Loc_Processor():
 
     def __init__(self, arg):
         self.arg = arg
+
+        if not os.path.exists(self.arg.work_dir):
+            os.makedirs(self.arg.work_dir)
+        self.print_log("------------------------")
+        self.print_log(str(arg))
+        self.print_log("------------------------")
         self.save_arg()
         self.init_seed(self.arg.seed)
 
@@ -83,9 +89,9 @@ class Loc_Processor():
         self.data_loader['train'] = DataLoader(
                                     dataset=Feeder(**self.arg.train_feeder_args),
                                     batch_size=self.arg.batch_size,
-                                    shuffle=False,
+                                    shuffle=True,
                                     num_workers=self.arg.num_worker)
-        self.data_loader['eval'] =  DataLoader(
+        self.data_loader['test'] =  DataLoader(
                                     dataset=Feeder(**self.arg.test_feeder_args),
                                     batch_size=self.arg.test_batch_size,
                                     shuffle=False,
@@ -95,7 +101,7 @@ class Loc_Processor():
         self.output_device = self.arg.device[0] if type(self.arg.device) is list else self.arg.device
         Model = self.import_class(self.arg.model)
         shutil.copy2(inspect.getfile(Model), self.arg.work_dir)
-        print(Model)
+        self.print_log('model : ', Model)
         self.model = Model(**self.arg.model_args)
 
     def load_optimizer(self):
@@ -116,7 +122,7 @@ class Loc_Processor():
         if self.arg.scheduler == 'ReduceLROnPlateau':
             self.scheduler = optim.lr_scheduler.ReduceLROnPlateau(self.optimizer, 'max', patience=5, factor = 0.5, verbose = True)
         elif self.arg.scheduler == 'StepLR':
-            self.scheduler = optim.lr_scheduler.StepLR(self.optimizer, step_size=200, gamma=0.5)
+            self.scheduler = optim.lr_scheduler.StepLR(self.optimizer, step_size=30, gamma=0.1)
         else:
             raise Exception(f"There is no {self.arg.scheduler}. Add it in load_scheduler() & step argument")
             
@@ -136,6 +142,7 @@ class Loc_Processor():
             print(str, file=f)
             
     def train(self, epoch, save_model=False):
+        self.model.train()
         self.print_log('** epoch: {}'.format(epoch + 1))
 
         loss_value = []
@@ -154,7 +161,7 @@ class Loc_Processor():
                 # gt_box = item['gt_box'].cuda(self.output_device) # (batchsize, 4) : (x, y, width, height)
         
             # forward
-            output = self.model(data)[1]
+            output = self.model(data)[0]
             loss = self.loss(output, gt_cls)
 
             # backward
@@ -174,10 +181,12 @@ class Loc_Processor():
 
 
         if self.arg.scheduler == 'ReduceLROnPlateau':
-            self.scheduler.step(np.mean(loss_value))
+            self.scheduler.step(np.mean(top1_acc))
         else:
             self.scheduler.step()
-            
+        
+        current_lr = self.optimizer.param_groups[0]['lr']
+        self.print_log(f"current lr : {current_lr}")
         self.print_log("\t Mean training loss: {:.4f}. Mean training top_1_acc: {:.2f}%. Mean training top_5_acc: {:.2f}% ".format(np.mean(loss_value), np.mean(top1_value)*100, np.mean(top5_value)*100))
         
         if save_model:
@@ -186,14 +195,15 @@ class Loc_Processor():
             torch.save(weights, self.arg.model_saved_name + '-' + str(epoch+1) + '-' + str(int(self.global_step)) + '.pt')
 
 
-    def eval(self, epoch):
+    def test(self, epoch):
+        self.model.eval()
         loss_value = []
         labels = []
         pred_scores = []
 
         self.train_writer.add_scalar('epoch', epoch, self.global_step)
 
-        for batch_idx, item in enumerate(self.data_loader['eval']) :
+        for batch_idx, item in enumerate(self.data_loader['test']) :
             self.global_step += 1
 
             with torch.no_grad():
@@ -201,9 +211,9 @@ class Loc_Processor():
                 # image_size = item['image_size'] # (batch_size, 2) : (width, height)
                 gt_cls = item['gt_cls'].cuda(self.output_device) # (batchsize,)
                 # gt_box = item['gt_box'].cuda(self.output_device) # (batchsize, 4) : (x, y, width, height)
-                output = self.model(data)[1]
+                output = self.model(data)[0]
 
-                loss = self.loss(output, gt_cls.long())
+                loss = self.loss(output, gt_cls)
                 loss_value.append(loss.data.item())
                 pred_scores.append(output.cpu().numpy())
                 labels.append(gt_cls.cpu().numpy())
@@ -232,7 +242,7 @@ class Loc_Processor():
         for epoch in range(self.arg.start_epoch, self.arg.num_epoch):
             save_model = (((epoch + 1) % self.arg.save_interval == 0) or (epoch + 1 == self.arg.num_epoch)) and (epoch + 1) > self.arg.save_epoch
             self.train(epoch, save_model=save_model)
-            self.eval(epoch)
+            self.test(epoch)
 
 
         num_params = sum(p.numel() for p in self.model.parameters() if p.requires_grad)

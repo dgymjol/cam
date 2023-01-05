@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+from torch.nn import init
 
 def import_class(name):
     components = name.split('.')
@@ -7,7 +8,7 @@ def import_class(name):
     for comp in components[1:]:
         mod = getattr(mod, comp)
     return mod
-    
+
 class ResNet50(nn.Module):
     def __init__(self, num_classes):
         super().__init__()
@@ -41,6 +42,8 @@ class ResNet50(nn.Module):
         self.fc = nn.Linear(in_features=2048, out_features=num_classes)
         # self.softmax = nn.Softmax(dim=1)
 
+        self.fc.apply(self._weight_init_kaiming)
+
     def forward(self, x):
         x = self.mp(self.layer0(x))
         x = self.layer1(x)
@@ -64,7 +67,9 @@ class ResNet50(nn.Module):
 
         return nn.Sequential(*blocks)
 
-
+    def _weight_init_kaiming(self, m):
+        if isinstance(m, nn.Conv2d):
+            init.kaiming_normal_(m.weight.data, a=0, mode='fan_in')
 
 class Bottleneck_block(nn.Module):
     def __init__(self, 

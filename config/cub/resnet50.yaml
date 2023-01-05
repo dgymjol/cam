@@ -1,0 +1,40 @@
+work_dir: ./work_dir/cub/resent50
+
+# feeder
+feeder: feeders.cub.Feeder
+num_classes : 200
+num_worker : 8
+train_feeder_args:
+  data_path: data/CUB_200_2011
+  phase: train
+  size: 448
+  aug: False
+  aug_N: 3
+  aug_M: 3
+
+test_feeder_args:
+  data_path: data/CUB_200_2011
+  phase: test
+  size: 448
+  aug: False
+
+# model
+model: model.ResNet50.ResNet50
+model_args:
+  num_classes: 200
+
+#optim
+weight_decay: 0.0001
+base_lr: 0.001
+
+# training
+device: [0,1]
+batch_size: 64
+test_batch_size: 64
+num_epoch: 30
+
+# scheduler
+scheduler: StepLR
+
+# random seed
+seed: 2023
