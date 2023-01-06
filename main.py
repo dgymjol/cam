@@ -1,17 +1,11 @@
 import argparse
 import yaml
 from processor import Processor
-from loc_processor import Loc_Processor
 
 def get_parser():
     # parameter priority: command line > config > default
     parser = argparse.ArgumentParser(
         description='Computer Vision Task Training Processor')
-
-    parser.add_argument(
-        '--task',
-        default='loc'
-    )
 
     parser.add_argument(
         '--work-dir',
@@ -143,10 +137,5 @@ if __name__ == '__main__':
 
     arg = parser.parse_args()
 
-    if arg.task == 'cls':
-        print("--------Classification-----------\n")
-        processor = Processor(arg)
-    else:
-        print("--------Localization-----------\n")
-        processor = Loc_Processor(arg)
+    processor = Processor(arg)
     processor.start()

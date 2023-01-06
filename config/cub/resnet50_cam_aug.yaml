@@ -1,6 +1,6 @@
 work_dir: ./work_dir/cub/resent50_cam
 
-num_epoch: 95
+num_epoch: 200
 # feeder
 feeder: feeders.cub.Feeder
 num_classes : 200
@@ -9,9 +9,9 @@ train_feeder_args:
   data_path: data/CUB_200_2011
   phase: train
   size: 448
-  aug: False
-  aug_N: 3
-  aug_M: 3
+  aug: True
+  aug_N: 2
+  aug_M: 5
 
 test_feeder_args:
   data_path: data/CUB_200_2011

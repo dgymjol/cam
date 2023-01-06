@@ -29,19 +29,26 @@ class Feeder(Dataset):
         with open(gt_path, 'rb') as fr:
             self.gt = pickle.load(fr)
 
-        self.transform_org = transforms.Compose([ transforms.Resize((size, size)),
-                                              transforms.ToTensor(),
-                                            ])
+        self.transform_train = transforms.Compose([ transforms.RandomResizedCrop(size),
+                                                    transforms.RandomHorizontalFlip(),
+                                                    transforms.ToTensor(),
+                                                  ])
 
-        self.transform_aug = transforms.Compose([ transforms.Resize((size, size)),
-                                        transforms.ToTensor(),
-                                    ])
-        
+        self.transform_train_aug = transforms.Compose([ transforms.RandomResizedCrop(size),
+                                                        transforms.RandomHorizontalFlip(),
+                                                        transforms.ToTensor(),
+                                                      ])
         if aug:
-            self.transform_aug.transforms.insert(0, RandAugment(aug_N, aug_M))
+            self.transform_train_aug.transforms.insert(0, RandAugment(aug_N, aug_M))
         
-        self.normalize = transforms.Normalize( mean=[0.4856, 0.4993, 0.4322],
-                                               std=[0.2250, 0.2205, 0.2548] )
+
+        self.transform_test = transforms.Compose([ transforms.Resize(int(size/0.875)),
+                                                   transforms.CenterCrop(size),
+                                                   transforms.ToTensor(),
+                                                 ])     
+
+        self.normalize = transforms.Normalize( mean=(0.485, 0.456, 0.406),
+                                                std=(0.229, 0.224, 0.225))
                             
     def __len__(self):
         if self.phase == 'train':
@@ -69,11 +76,13 @@ class Feeder(Dataset):
         image = self.data[id]
         w, h = image.size
 
-        if len(np.array(image).shape) == 2: # grayscale => no aug
-            tensor = self.transform_org(image)
-        
-        else: # rgb => aug
-            tensor = self.transform_aug(image)
+        if self.phase == 'train':
+            if len(np.array(image).shape) == 2: # grayscale => no aug
+                tensor = self.transform_train(image)
+            else: # rgb => aug
+                tensor = self.transform_train_aug(image)
+        else:
+            tensor = self.transform_test(image)
 
         label = self.gt[id]
 
