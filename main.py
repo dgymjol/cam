@@ -70,7 +70,7 @@ def get_parser():
         help='the arguments of model')
     parser.add_argument(
         '--weights',
-        default=None,
+        default='Nothing',
         help='the weights for network initialization')
     parser.add_argument(
         '--ignore-weights',
