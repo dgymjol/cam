@@ -37,7 +37,7 @@ class Processor():
         # if os.path.isdir(arg.model_saved_name):
         #     print('log_dir: ', arg.model_saved_model, 'already exist')
         self.train_writer = SummaryWriter(os.path.join(arg.model_saved_name, 'train'), 'train')
-        self.val_writer = SummaryWriter(os.path.join(arg.model_saved_name, 'val'), 'val')
+        self.test_writer = SummaryWriter(os.path.join(arg.model_saved_name, 'val'), 'val')
         
         
         self.global_step = 0
@@ -109,14 +109,21 @@ class Processor():
         
         if self.arg.weights == 'Nothing':
             self.print_log("No pretrained weights loaded")
+            # raise Exception("No pretrained weights loaded")
         else:
-            if not os.path.exists(self.arg.weights):
-                self.print_log(f"the dir doesnt exist {self.arg.weights}")
+            exp_dir, epoch = self.arg.weights.split(':')
+            if not os.path.exists(exp_dir):
+                self.print_log(f"Error : the dir doesnt exist {exp_dir}")
+                raise Exception(f"the dir doesnt exist {exp_dir}")
             else:
-                exp_dir, epoch = self.arg.weights.split(':')
+                model_weight_file_name = ''
                 for run_file in os.listdir(exp_dir) :
                     if f"runs-{epoch}" in run_file  and '.pt' in run_file:
                         model_weight_file_name = run_file
+                if model_weight_file_name == '':
+                    self.print_log(f'Error : that epoch{epoch} weight file doesnt exist')
+                    raise Exception(f'that epoch{epoch} weight file doesnt exist')
+
                 weights = torch.load(os.path.join(exp_dir,model_weight_file_name))
                 self.model.load_state_dict(weights, strict=False)
                 self.print_log(f"Successful : transfered weights ({os.path.join(exp_dir,model_weight_file_name)})")
@@ -172,11 +179,10 @@ class Processor():
         for batch_idx, item in enumerate(self.data_loader['train']) :
             self.global_step += 1
 
-            with torch.no_grad():
-                data = item['image_data'].cuda(self.output_device) # (batchsize, 3, 224, 224)
-                # image_size = item['image_size'] # (batch_size, 2) : (width, height)
-                gt_cls = item['gt_cls'].cuda(self.output_device) # (batchsize,)
-                # gt_box = item['gt_box'].cuda(self.output_device) # (batchsize, 4) : (x, y, width, height)
+            data = item['image_data'].cuda(self.output_device) # (batchsize, 3, 224, 224)
+            # image_size = item['image_size'] # (batch_size, 2) : (width, height)
+            gt_cls = item['gt_cls'].cuda(self.output_device) # (batchsize,)
+            # gt_box = item['gt_box'].cuda(self.output_device) # (batchsize, 4) : (x, y, width, height)
         
             # forward
             output = self.model(data)[0]
@@ -190,14 +196,11 @@ class Processor():
             loss_value.append(loss.data.item())
 
             _, pred = torch.max(output, 1)
-            correct = torch.sum(pred == gt_cls.detach())
-            total = gt_cls.size(0)
-
-            num_correct += correct
-            num_total += total
-
-            self.train_writer.add_scalar('lr', self.lr, self.global_step)
-            self.train_writer.add_scalar('acc', correct.detach().cpu().numpy()*100 / total, self.global_step)
+            num_correct += torch.sum(pred == gt_cls.detach())
+            num_total += gt_cls.size(0)
+            # self.train_writer.add_scalar('lr', self.lr, self.global_step)
+            # self.train_writer.add_scalar('acc', correct.detach().cpu().numpy()*100 / total, self.global_step)
+            # print(f'loss : {loss.data.item()}  acc : {num_correct.detach().cpu().numpy()*100 / num_total}')
 
         train_acc = num_correct.detach().cpu().numpy()*100 / num_total
 
@@ -223,7 +226,7 @@ class Processor():
         num_correct = 0
         num_total = 0
 
-        self.train_writer.add_scalar('epoch', epoch, self.global_step)
+        self.test_writer.add_scalar('epoch', epoch, self.global_step)
 
         for batch_idx, item in enumerate(self.data_loader['test']) :
             self.global_step += 1
@@ -242,6 +245,8 @@ class Processor():
                 num_correct += torch.sum(pred == gt_cls.detach())
                 num_total += gt_cls.size(0)
 
+                # print(f'loss : {loss.data.item()}  acc : {num_correct.detach().cpu().numpy()*100 / num_total}')
+
         test_acc = num_correct.detach().cpu().numpy()*100/num_total
 
         if test_acc > self.best_acc:
@@ -253,8 +258,8 @@ class Processor():
 
         self.print_log("\t Mean test loss: {:.4f}. Mean test acc: {:.2f}%.".format(np.mean(loss_value), test_acc))
 
-        self.val_writer.add_scalar('lr', self.lr, self.global_step)
-        self.val_writer.add_scalar('top1', test_acc, self.global_step)
+        # self.test_writer.add_scalar('lr', self.lr, self.global_step)
+        # self.test_writer.add_scalar('top1', test_acc, self.global_step)
 
 
     def start(self):

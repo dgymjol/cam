@@ -36,7 +36,7 @@ class ResNet50_cam(nn.Module):
         # conv4 : bottleneck 512, out 2048, num 3 => Remove to increse map resolution
         # self.layer4 = self._make_layer(in_channel=1024, bottleneck_channel=512, out_channel=2048, block_num=3, stride=2)
 
-        self.final_conv = nn.Conv2d(1024, 1024, 3, stride=1, padding=1, bias=False)
+        # self.final_conv = nn.Conv2d(1024, 1024, 3, stride=1, padding=1, bias=False)
         self.w = nn.Conv2d(1024, self.num_classes, 1, bias = False) # conv weight => (num_classes, k, 1, 1)
 
     def forward(self, x):
@@ -47,7 +47,7 @@ class ResNet50_cam(nn.Module):
         # x = self.layer4(x)
 
         GAP = self.w(x)
-        S_c = torch.sum(GAP.reshape(GAP.shape[0], self.num_classes, -1), 2)
+        S_c = torch.mean(GAP.reshape(GAP.shape[0], self.num_classes, -1), 2)
 
         return S_c, GAP
 
