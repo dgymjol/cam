@@ -40,13 +40,8 @@ def get_parser():
         description='Visualization of CAM')
     
     parser.add_argument(
-            '--exp-dir',
-            default='work_dir/cub/resnet50_cam_plz')
-
-    parser.add_argument(
-            '--epoch',
-            type=int,
-            default=45)
+            '--weights',
+            default='work_dir/cub/resnet50_cam:60')
 
     parser.add_argument(
             '--test-image-path',
@@ -59,18 +54,23 @@ init_seed(1)
 parser = get_parser()
 arg = parser.parse_args()
 
+exp_dir, epoch = arg.weights.split(':')
+if not os.path.exists(exp_dir):
+    raise Exception(f"{exp_dir} : No such file or directory")
+else:
+    model_weight_file_name = ''
+    for run_file in os.listdir(exp_dir) :
+        if f"runs-{epoch}" in run_file  and '.pt' in run_file:
+            model_weight_file_name = run_file
+    if model_weight_file_name == '':
+        raise Exception(f'that epoch {epoch} weight file doesnt exist')
 
-exp_dir = arg.exp_dir
-epoch = arg.epoch
+    weights = torch.load(os.path.join(exp_dir,model_weight_file_name))
+    model = ResNet50_cam(num_classes=200)
+    model.load_state_dict(weights, strict=False)
+    print("pretrained weight is loaded")
+
 test_image_path = arg.test_image_path
-
-for run_file in os.listdir(exp_dir) :
-    if f"runs-{epoch}" in run_file  and '.pt' in run_file:
-        model_weight_file_name = run_file
-weights = torch.load(os.path.join(exp_dir,model_weight_file_name))
-model = ResNet50_cam(num_classes=200)
-model.load_state_dict(weights, strict=False)
-print("pretrained weight is loaded")
 
 img_name = test_image_path.split('/')[-1].split('.')[0]
 gt_cls = int(test_image_path.split('/')[-2].split('.')[0]) - 0
