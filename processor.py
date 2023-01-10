@@ -17,6 +17,7 @@ import pdb
 import inspect
 import shutil
 from collections import OrderedDict
+import torch.utils.model_zoo as model_zoo
 
 class Processor():
 
@@ -110,6 +111,12 @@ class Processor():
         if self.arg.weights == 'Nothing':
             self.print_log("No pretrained weights loaded")
             # raise Exception("No pretrained weights loaded")
+        elif self.arg.weights == 'ResNet_ImageNet':
+            model_urls = { 'resnet50': 'https://download.pytorch.org/models/resnet50-19c8e357.pth'}
+            state_dict = model_zoo.load_url(model_urls['resnet50'])
+            self.model.load_state_dict(state_dict, strict=False)
+            self.print_log("Successful : transfered weights(imageNet)")
+
         else:
             exp_dir, epoch = self.arg.weights.split(':')
             if not os.path.exists(exp_dir):
