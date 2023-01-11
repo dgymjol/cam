@@ -26,7 +26,6 @@ class Processor():
 
         if not os.path.isdir(self.arg.work_dir):
             os.makedirs(self.arg.work_dir)
-            time.sleep(5)
 
         self.print_log("------------------------")
         self.print_log(str(arg))

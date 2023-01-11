@@ -23,17 +23,19 @@ conda :
 
 ### 3. Training
 ```bash
- $ python main.py --config ./config/cub/resnet50_cam.yaml --work-dir --work-dir work_dir/cub/resnet50_cam 
+ $ python main.py --work-dir work_dir/cub/r50cam_0.001 --config ./config/cub/resnet50_cam.yaml --base-lr 0.001 --num-epoch 95
+ $ python main.py --work-dir work_dir/cub/r50cam_aug_0.005 --config ./config/cub/resnet50_cam_aug.yaml --base-lr 0.005--num-epoch 95
  ```
 
 ### 4. Evaluation (mIoU)
 ```bash
- $ python evaluation.py --weights ./work_dir/cub/resnet50_cam:45 --config config/cub/resnet50_cam_eval.yaml
+ $ python evaluation.py --weights ./work_dir/cub/r50cam_0.001:92 --config config/cub/resnet50_cam_eval.yaml
+ $ python evaluation.py --weights ./work_dir/cub/r50cam_aug_0.005:67 --config config/cub/resnet50_cam_eval.yaml
  ```
 
 ### 5. Visualization for one image
 ```bash
- $ python visualized_cam.py --weights ./work_dir/cub/resnet50_cam:45 --test-image-path data/CUB_200_2011/images/015.Lazuli_Bunting/Lazuli_Bunting_0020_14837.jpg
+ $ python visualized_cam.py --weights ./work_dir/cub/r50cam_0.001:92 --image-id 1
  ```
 
 ###  6. References : 
