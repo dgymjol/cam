@@ -1,7 +1,7 @@
 work_dir: ./work_dir/cub/resent50_cam
 
 num_epoch: 95
-weights : Nothing
+weights : ResNet_ImageNet
 
 # feeder
 feeder: feeders.cub.Feeder

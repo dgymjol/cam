@@ -119,7 +119,6 @@ class Processor():
 
         if not os.path.isdir(self.arg.results_dir):
             os.makedirs(self.arg.results_dir)
-            time.sleep(5)
 
         self.print_log("------------------------")
         self.print_log(str(arg))
@@ -206,7 +205,7 @@ class Processor():
                 weights = torch.load(os.path.join(exp_dir,model_weight_file_name))
                 self.model.load_state_dict(weights, strict=False)
                 self.print_log(f"Successful : transfered weights ({os.path.join(exp_dir,model_weight_file_name)})")
-        
+
     def load_loss(self):
         if self.arg.loss == 'CrossEntropyLoss':
             self.loss = nn.CrossEntropyLoss().cuda(self.output_device)
@@ -223,23 +222,25 @@ class Processor():
             print(str, file=f)
 
     def IoU(self, box1, box2):
-        print(box1, box2)
+        '''
+            box1 : (x, y, w, h)
+            box2 : (x, y, w, h)
+        '''
+
+        # intersection x1, y1, x2, y2
+
         # box = (x1, y1, x2, y2)
-        box1_area = (box1[2] - box1[0] + 1) * (box1[3] - box1[1] + 1)
-        box2_area = (box2[2] - box2[0] + 1) * (box2[3] - box2[1] + 1)
+        box1_area = box1[2] * box1[3]
+        box2_area = box2[2] * box2[3]
 
         # obtain x1, y1, x2, y2 of the intersection
         x1 = max(box1[0], box2[0])
         y1 = max(box1[1], box2[1])
-        x2 = min(box1[2], box2[2])
-        y2 = min(box1[3], box2[3])
+        x2 = min(box1[0] + box1[2], box2[0] + box2[2]) # x + w
+        y2 = min(box1[1] + box1[3], box2[1] + box2[3]) # y + h
 
-        # compute the width and height of the intersection
-        w = max(0, x2 - x1 + 1)
-        h = max(0, y2 - y1 + 1)
-
-        inter = w * h
-        iou = inter / (box1_area + box2_area - inter)
+        inter = max(0, x2 - x1) * max(0, y2 - y1)
+        iou = inter / (box1_area + box2_area - inter + 1e-7)
         return iou
 
     def eval_train(self):
@@ -273,9 +274,9 @@ class Processor():
                 gap = gap.detach().cpu().numpy()
                 gap_image = np.uint8(255*gap)
                 cam_image = cv2.resize(gap_image,(int(w), int(h)))
-                threshold = np.max(cam_image) * 0.4
-                # _, thresh_map = cv2.threshold(cam_image, threshold, 255, cv2.THRESH_BINARY)
-                _, thresh_map = cv2.threshold(cam_image, threshold, 255, cv2.THRESH_OTSU)
+                threshold = np.max(cam_image) * 0.55
+                _, thresh_map = cv2.threshold(cam_image, threshold, 255, cv2.THRESH_BINARY)
+                # _, thresh_map = cv2.threshold(cam_image, threshold, 255, cv2.THRESH_OTSU)
                 cnt, labels, stats, centroids = cv2.connectedComponentsWithStats(thresh_map)
 
                 largest_connected_component_idx = np.argmax(stats[1:, -1]) + 1 # background is most
@@ -287,7 +288,7 @@ class Processor():
         train_acc = num_correct*100/num_total
         train_mIoU = sum_iou / num_total
 
-        self.print_log("\t Mean train loss: {:.4f}. Mean train acc: {:.2f}%. mIoU {:4f}".format(np.mean(loss_value), train_acc, train_mIoU))
+        self.print_log("\t Mean train loss: {:.4f}. Mean train acc: {:.2f}%. mIoU: {:4f}".format(np.mean(loss_value), train_acc, train_mIoU))
 
     def eval_test(self):
         self.model.eval()
@@ -320,8 +321,10 @@ class Processor():
                 gap = gap.detach().cpu().numpy()
                 gap_image = np.uint8(255*gap)
                 cam_image = cv2.resize(gap_image,(int(w), int(h)))
-                threshold = np.max(cam_image) * 0.4
-                _, thresh_map = cv2.threshold(cam_image, threshold, 255, cv2.THRESH_BINARY)
+                threshold = np.max(cam_image) * 0.40
+                # _, thresh_map = cv2.threshold(cam_image, threshold, 255, cv2.THRESH_BINARY)
+                _, thresh_map = cv2.threshold(cam_image, threshold, 255, cv2.THRESH_OTSU)
+
                 cnt, labels, stats, centroids = cv2.connectedComponentsWithStats(thresh_map)
 
                 largest_connected_component_idx = np.argmax(stats[1:, -1]) + 1 # background is most
@@ -329,10 +332,10 @@ class Processor():
 
                 iou = self.IoU(gt_box, pred_box)
                 sum_iou += iou
-        test_acc = num_correct / num_total
+        test_acc = num_correct * 100 / num_total 
         test_mIoU = sum_iou / num_total
 
-        self.print_log("\t Mean test loss: {:.4f}. Mean test acc: {:.2f}%. mIoU{:4f}".format(np.mean(loss_value), test_acc, test_mIoU))
+        self.print_log("\t Mean test loss: {:.4f}. Mean test acc: {:.2f}%. mIoU: {:4f}".format(np.mean(loss_value), test_acc, test_mIoU))
 
     def start(self):
         self.eval_test()
