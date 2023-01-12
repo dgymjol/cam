@@ -7,7 +7,7 @@ from model.ResNet50_cam import ResNet50_cam
 import cv2
 from PIL import Image
 import torchvision.transforms as transforms
-
+import sys
 
 def init_seed(seed):
         torch.cuda.manual_seed_all(seed)
@@ -21,7 +21,11 @@ def init_seed(seed):
 def get_parser():
     parser = argparse.ArgumentParser(
         description='Visualization of CAM')
-    
+
+    parser.add_argument(
+            '--model',
+            default='model.ResNet50_cam.ResNet50_cam')
+
     parser.add_argument(
             '--weights',
             default='work_dir/cub/r50cam_0.001:92')
@@ -57,11 +61,21 @@ def IoU(box1, box2):
     iou = inter / (box1_area + box2_area - inter + 1e-7)
     return iou
 
+def import_class(import_str):
+        mod_str, _sep, class_str = import_str.rpartition('.')
+        __import__(mod_str)
+        try:
+            return getattr(sys.modules[mod_str], class_str)
+        except AttributeError:
+            raise ImportError(f'Class {class_str} cannot be found')
+
 # argpase
 init_seed(2023)
 parser = get_parser()
 arg = parser.parse_args()
 
+Model = import_class(arg.model)
+model = Model(num_classes=200)
 
 # mkdir - save dir
 if not os.path.isdir(arg.results_dir):
@@ -80,7 +94,6 @@ else:
         raise Exception(f'that epoch {epoch} weight file doesnt exist')
 
     weights = torch.load(os.path.join(exp_dir,model_weight_file_name))
-    model = ResNet50_cam(num_classes=200)
     model.load_state_dict(weights, strict=False)
     print("pretrained weight is loaded")
 

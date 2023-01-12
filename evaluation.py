@@ -8,7 +8,6 @@ from torch.utils.data import DataLoader
 import torch.optim as optim
 import torch.nn as nn
 
-from sklearn.metrics import top_k_accuracy_score
 from tensorboardX import SummaryWriter
 import time
 import argparse
@@ -274,7 +273,7 @@ class Processor():
                 gap = gap.detach().cpu().numpy()
                 gap_image = np.uint8(255*gap)
                 cam_image = cv2.resize(gap_image,(int(w), int(h)))
-                threshold = np.max(cam_image) * 0.55
+                threshold = np.max(cam_image) * 0.20
                 _, thresh_map = cv2.threshold(cam_image, threshold, 255, cv2.THRESH_BINARY)
                 # _, thresh_map = cv2.threshold(cam_image, threshold, 255, cv2.THRESH_OTSU)
                 cnt, labels, stats, centroids = cv2.connectedComponentsWithStats(thresh_map)

@@ -8,6 +8,7 @@ class VGG(nn.Module):
 
     def __init__(self, features, num_classes=200):
         super(VGG, self).__init__()
+        self.num_classes = num_classes
         self.features = features
         self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
         # # TODO modify
@@ -15,13 +16,16 @@ class VGG(nn.Module):
             nn.Dropout(0.5),
             nn.Linear(1024, num_classes),
         )
+        self.w = nn.Conv2d(1024, self.num_classes, 1, bias = False) # conv weight => (num_classes, k, 1, 1)
 
     def forward(self, x):
-        cam = self.features(x)
-        out = self.avgpool(cam)
+        x = self.features(x)
+        gap = self.w(x)
+
+        out = self.avgpool(x)
         out = torch.flatten(out, 1)
         out = self.classifier(out)
-        return out, cam
+        return out, gap
 
 def make_layers(cfg, batch_norm=False):
     layers = []
