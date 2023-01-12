@@ -8,7 +8,6 @@ from torch.utils.data import DataLoader
 import torch.optim as optim
 import torch.nn as nn
 
-from sklearn.metrics import top_k_accuracy_score
 from tensorboardX import SummaryWriter
 import time
 import argparse
@@ -163,7 +162,7 @@ class Processor():
         if self.arg.scheduler == 'ReduceLROnPlateau':
             self.scheduler = optim.lr_scheduler.ReduceLROnPlateau(self.optimizer, 'max', patience=5, factor = 0.5, verbose = True)
         elif self.arg.scheduler == 'StepLR':
-            self.scheduler = optim.lr_scheduler.StepLR(self.optimizer, step_size=30, gamma=0.1)
+            self.scheduler = optim.lr_scheduler.StepLR(self.optimizer, step_size=30, gamma=0.5)
         else:
             raise Exception(f"There is no {self.arg.scheduler}. Add it in load_scheduler() & step argument")
             
@@ -193,7 +192,6 @@ class Processor():
         self.train_writer.add_scalar('epoch', epoch, self.global_step)
 
         for batch_idx, item in enumerate(self.data_loader['train']) :
-            breakpoint()
             self.global_step += 1
 
             data = item['image_data'].cuda(self.output_device) # (batchsize, 3, 224, 224)
