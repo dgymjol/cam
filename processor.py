@@ -107,15 +107,26 @@ class Processor():
         self.print_log('model : ', Model)
         self.model = Model(**self.arg.model_args)
         
+        model_urls = { 'resnet50': 'https://download.pytorch.org/models/resnet50-19c8e357.pth', 
+                       'vgg16' : 'https://download.pytorch.org/models/vgg16-397923af.pth',
+                       'vgg16bn' : 'https://download.pytorch.org/models/vgg16_bn-6c64b313.pth'}
+
+                               
         if self.arg.weights == 'Nothing':
             self.print_log("No pretrained weights loaded")
             # raise Exception("No pretrained weights loaded")
         elif self.arg.weights == 'ResNet_ImageNet':
-            model_urls = { 'resnet50': 'https://download.pytorch.org/models/resnet50-19c8e357.pth'}
             state_dict = model_zoo.load_url(model_urls['resnet50'])
             self.model.load_state_dict(state_dict, strict=False)
-            self.print_log("Successful : transfered weights(imageNet)")
-
+            self.print_log("Successful : transfered weights(ResNet50_imageNet)")
+        elif self.arg.weights == 'VGG16_ImageNet':
+            state_dict = model_zoo.load_url(model_urls['vgg16'])
+            self.model.load_state_dict(state_dict, strict=False)
+            self.print_log("Successful : transfered weights(VGG16_imageNet)")
+        elif self.arg.weights == 'VGG16bn_ImageNet':
+            state_dict = model_zoo.load_url(model_urls['vgg16bn'])
+            self.model.load_state_dict(state_dict, strict=False)
+            self.print_log("Successful : transfered weights(VGG16bn_imageNet)")
         else:
             exp_dir, epoch = self.arg.weights.split(':')
             if not os.path.exists(exp_dir):
@@ -133,7 +144,6 @@ class Processor():
                 weights = torch.load(os.path.join(exp_dir,model_weight_file_name))
                 self.model.load_state_dict(weights, strict=False)
                 self.print_log(f"Successful : transfered weights ({os.path.join(exp_dir,model_weight_file_name)})")
-        
 
     def load_optimizer(self):
         if self.arg.optimizer == 'SGD':
@@ -153,7 +163,7 @@ class Processor():
         if self.arg.scheduler == 'ReduceLROnPlateau':
             self.scheduler = optim.lr_scheduler.ReduceLROnPlateau(self.optimizer, 'max', patience=5, factor = 0.5, verbose = True)
         elif self.arg.scheduler == 'StepLR':
-            self.scheduler = optim.lr_scheduler.StepLR(self.optimizer, step_size=30, gamma=0.5)
+            self.scheduler = optim.lr_scheduler.StepLR(self.optimizer, step_size=30, gamma=0.1)
         else:
             raise Exception(f"There is no {self.arg.scheduler}. Add it in load_scheduler() & step argument")
             
@@ -183,6 +193,7 @@ class Processor():
         self.train_writer.add_scalar('epoch', epoch, self.global_step)
 
         for batch_idx, item in enumerate(self.data_loader['train']) :
+            breakpoint()
             self.global_step += 1
 
             data = item['image_data'].cuda(self.output_device) # (batchsize, 3, 224, 224)
