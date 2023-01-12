@@ -294,7 +294,10 @@ class Processor():
         self.model.eval()
         loss_value = []
 
-        num_correct = 0
+        num_top1_cls = 0
+        num_top1_loc = 0
+        num_gt_know_loc = 0
+
         num_total = 0
         sum_iou = 0
 
@@ -306,12 +309,16 @@ class Processor():
                 gt_box = item['gt_box'][0].numpy() # (1, 4) : (x, y, width, height)
                 conf, gaps = self.model(data)
 
+                cls = True
                 # classification
                 _, pred_label = torch.max(conf, 1)
                 loss = self.loss(conf, gt_cls)
                 loss_value.append(loss.data.item())
                 if pred_label == gt_cls.detach() :
-                    num_correct += 1
+                    num_top1_cls += 1
+                else:
+                    cls = False
+
                 num_total += 1
 
                 # localization
@@ -321,7 +328,7 @@ class Processor():
                 gap = gap.detach().cpu().numpy()
                 gap_image = np.uint8(255*gap)
                 cam_image = cv2.resize(gap_image,(int(w), int(h)))
-                threshold = np.max(cam_image) * 0.40
+                threshold = np.max(cam_image) * 0.20
                 # _, thresh_map = cv2.threshold(cam_image, threshold, 255, cv2.THRESH_BINARY)
                 _, thresh_map = cv2.threshold(cam_image, threshold, 255, cv2.THRESH_OTSU)
 
@@ -332,14 +339,27 @@ class Processor():
 
                 iou = self.IoU(gt_box, pred_box)
                 sum_iou += iou
-        test_acc = num_correct * 100 / num_total 
+                
+                bbox = False
+                if iou >= 0.5:
+                    bbox = True
+                    num_gt_know_loc += 1
+
+                if bbox and cls:
+                    num_top1_loc += 1
+                
+
+        test_top1_cls = num_top1_cls * 100 / num_total 
+        test_top1_loc = num_top1_loc * 100 / num_total 
+        test_gt_know_loc = num_gt_know_loc * 100 / num_total 
+
         test_mIoU = sum_iou / num_total
 
-        self.print_log("\t Mean test loss: {:.4f}. Mean test acc: {:.2f}%. mIoU: {:4f}".format(np.mean(loss_value), test_acc, test_mIoU))
+        self.print_log("\t Mean test top1_cls: {:.2f}%. Mean test top1_loc: {:.2f}%. Mean test gt_known_loc: {:.2f}%. mIoU: {:4f}".format(test_top1_cls, test_top1_loc, test_gt_know_loc, test_mIoU))
 
     def start(self):
         self.eval_test()
-        self.eval_train()
+        # self.eval_train()
 
 if __name__ == '__main__':
     parser = get_parser()
