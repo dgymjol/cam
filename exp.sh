@@ -1,11 +1,11 @@
-python main.py --work-dir work_dir/cub/vgg_gap_gamma --config ./config/cub/vgg_gap.yaml --num-epoch 100 --device 0
-python main.py --work-dir work_dir/cub/vgg_gap_bn_gamma --config ./config/cub/vgg_gap_bn.yaml --num-epoch 100 --device 0
+python main.py --work-dir work_dir/cub/vgg_gap_bn_gamma_448 --config ./config/cub/vgg_gap_bn.yaml --num-epoch 100 --device 0 1
+python main.py --work-dir work_dir/cub/vgg_gap_gamma_448 --config ./config/cub/vgg_gap.yaml --num-epoch 100 --device 0 1
 
 # python evaluation.py --weights work_dir/cub/vgg_gap:33 --device 0 --config config/cub/vgg_gap_eval.yaml
 # python evaluation.py --weights work_dir/cub/vgg_gap:31 --device 0 --config config/cub/vgg_gap_eval.yaml
 
 
-# python evaluation.py --weights work_dir/cub/r50cam_0.005:67 --device 0 1 --config config/cub/resnet50_cam_eval.yaml
+# python evaluation.py --weights work_dir/cub/r50cam_0.001:92 --device 0 1 --config config/cub/resnet50_cam_eval.yaml
 
 # lrs=(0.001 0.005 0.0025 0.001)
 

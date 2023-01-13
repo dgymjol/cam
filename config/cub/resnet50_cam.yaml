@@ -10,16 +10,14 @@ num_worker : 8
 train_feeder_args:
   data_path: data/CUB_200_2011
   phase: train
-  size: 448
-  aug: False
-  aug_N: 3
-  aug_M: 3
+  image_size: 256
+  crop_size : 224
 
 test_feeder_args:
   data_path: data/CUB_200_2011
   phase: test
-  size: 448
-  aug: False
+  image_size: 256
+  crop_size : 224
 
 # model
 model: model.ResNet50_cam.ResNet50_cam
@@ -27,7 +25,7 @@ model_args:
   num_classes: 200
 
 #optim
-weight_decay: 0.0001
+weight_decay: 0.0005
 base_lr: 0.001
 
 # training

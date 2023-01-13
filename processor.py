@@ -134,7 +134,7 @@ class Processor():
             else:
                 model_weight_file_name = ''
                 for run_file in os.listdir(exp_dir) :
-                    if f"runs-{epoch}" in run_file  and '.pt' in run_file:
+                    if f"runs-{epoch}.pt" in run_file:
                         model_weight_file_name = run_file
                 if model_weight_file_name == '':
                     self.print_log(f'Error : that epoch{epoch} weight file doesnt exist')
@@ -149,7 +149,7 @@ class Processor():
             self.optimizer = optim.SGD(self.model.parameters(),
                                        lr=self.arg.base_lr,
                                        momentum=0.9,
-                                       nesterov=False,
+                                       nesterov=True,
                                        weight_decay=self.arg.weight_decay)
         elif self.arg.optimizer == 'Adam':
             self.optimizer = optim.Adam(self.model.parameters(),
@@ -162,7 +162,7 @@ class Processor():
         if self.arg.scheduler == 'ReduceLROnPlateau':
             self.scheduler = optim.lr_scheduler.ReduceLROnPlateau(self.optimizer, 'max', patience=5, factor = 0.5, verbose = True)
         elif self.arg.scheduler == 'StepLR':
-            self.scheduler = optim.lr_scheduler.StepLR(self.optimizer, step_size=30, gamma=0.5)
+            self.scheduler = optim.lr_scheduler.StepLR(self.optimizer, step_size=30, gamma=0.1)
         else:
             raise Exception(f"There is no {self.arg.scheduler}. Add it in load_scheduler() & step argument")
             
@@ -198,9 +198,8 @@ class Processor():
             # image_size = item['image_size'] # (batch_size, 2) : (width, height)
             gt_cls = item['gt_cls'].cuda(self.output_device) # (batchsize,)
             # gt_box = item['gt_box'].cuda(self.output_device) # (batchsize, 4) : (x, y, width, height)
-        
-            # forward
-            output = self.model(data)[0]
+            
+            output, _ = self.model(data)
             loss = self.loss(output, gt_cls)
 
             # backward
@@ -228,10 +227,10 @@ class Processor():
         self.print_log(f"current lr : {current_lr}")
         self.print_log("\t Mean training loss: {:.4f}. Mean training acc: {:.2f}% ".format(np.mean(loss_value), train_acc))
         
-        if save_model:
-            state_dict = self.model.state_dict()
-            weights = OrderedDict([[k.split('module.')[-1], v.cpu()] for k, v in state_dict.items()])
-            torch.save(weights, self.arg.model_saved_name + '-' + str(epoch+1) + '-' + str(int(self.global_step)) + '.pt')
+        # if save_model:
+        state_dict = self.model.state_dict()
+        weights = OrderedDict([[k.split('module.')[-1], v.cpu()] for k, v in state_dict.items()])
+        torch.save(weights, self.arg.model_saved_name + '-' + str(epoch+1) + '.pt')
 
 
     def test(self, epoch):
@@ -249,10 +248,11 @@ class Processor():
             with torch.no_grad():
                 data = item['image_data'].cuda(self.output_device) # (batchsize, 3, 224, 224)
                 # image_size = item['image_size'] # (batch_size, 2) : (width, height)
+
                 gt_cls = item['gt_cls'].cuda(self.output_device) # (batchsize,)
                 # gt_box = item['gt_box'].cuda(self.output_device) # (batchsize, 4) : (x, y, width, height)
-                output = self.model(data)[0]
-
+                output, _ = self.model(data)
+            
                 loss = self.loss(output, gt_cls)
                 loss_value.append(loss.data.item())
 
@@ -264,12 +264,12 @@ class Processor():
 
         test_acc = num_correct.detach().cpu().numpy()*100/num_total
 
-        if test_acc > self.best_acc:
-            self.best_acc = test_acc
-            self.best_acc_epoch = epoch + 1
-            state_dict = self.model.state_dict()
-            weights = OrderedDict([[k.split('module.')[-1], v.cpu()] for k, v in state_dict.items()])
-            torch.save(weights, self.arg.model_saved_name + '-' + str(epoch+1) + '.pt')
+        # if test_acc > self.best_acc:
+        #     self.best_acc = test_acc
+        #     self.best_acc_epoch = epoch + 1
+        #     state_dict = self.model.state_dict()
+        #     weights = OrderedDict([[k.split('module.')[-1], v.cpu()] for k, v in state_dict.items()])
+        #     torch.save(weights, self.arg.model_saved_name + '-' + str(epoch+1) + '.pt')
 
         self.print_log("\t Mean test loss: {:.4f}. Mean test acc: {:.2f}%.".format(np.mean(loss_value), test_acc))
 

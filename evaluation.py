@@ -195,7 +195,7 @@ class Processor():
             else:
                 model_weight_file_name = ''
                 for run_file in os.listdir(exp_dir) :
-                    if f"runs-{epoch}" in run_file  and '.pt' in run_file:
+                    if f"runs-{epoch}.pt" in run_file:
                         model_weight_file_name = run_file
                 if model_weight_file_name == '':
                     self.print_log(f'Error : that epoch{epoch} weight file doesnt exist')
@@ -203,7 +203,7 @@ class Processor():
 
                 weights = torch.load(os.path.join(exp_dir,model_weight_file_name))
                 self.model.load_state_dict(weights, strict=False)
-                self.print_log(f"Successful : transfered weights ({os.path.join(exp_dir,model_weight_file_name)})")
+                self.print_log(f"Successful : transfered weights ({os.path.join(exp_dir,model_weight_file_name)}, epoch {epoch})")
 
     def load_loss(self):
         if self.arg.loss == 'CrossEntropyLoss':
@@ -322,14 +322,14 @@ class Processor():
 
                 # localization
                 gap = gaps[0][pred_label][0] # (14, 14)
-                gap = gap - torch.min(gap)
-                gap = gap / torch.max(gap)
+                gap_min, gap_max = torch.min(gap), torch.max(gap)
+                gap = (gap-gap_min) / (gap_max - gap_min)
                 gap = gap.detach().cpu().numpy()
                 gap_image = np.uint8(255*gap)
                 cam_image = cv2.resize(gap_image,(int(w), int(h)))
                 threshold = np.max(cam_image) * 0.20
-                # _, thresh_map = cv2.threshold(cam_image, threshold, 255, cv2.THRESH_BINARY)
-                _, thresh_map = cv2.threshold(cam_image, threshold, 255, cv2.THRESH_OTSU)
+                _, thresh_map = cv2.threshold(cam_image, threshold, 255, cv2.THRESH_BINARY)
+                # _, thresh_map = cv2.threshold(cam_image, threshold, 255, cv2.THRESH_OTSU)
 
                 cnt, labels, stats, centroids = cv2.connectedComponentsWithStats(thresh_map)
 

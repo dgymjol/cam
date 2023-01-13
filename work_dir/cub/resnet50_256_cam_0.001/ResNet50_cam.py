@@ -42,8 +42,6 @@ class ResNet50_cam(nn.Module):
 
         self.w = nn.Conv2d(1024, self.num_classes, 1, bias = False) # conv weight => (num_classes, k, 1, 1)
 
-        self._initialize_weights()
-
     def forward(self, x): # (batch_size, 3, 448, 448)
         x = self.relu(self.bn1(self.conv1(x)))
         x = self.maxpool(x)
@@ -51,15 +49,12 @@ class ResNet50_cam(nn.Module):
         x = self.layer2(x)
         x = self.layer3(x) # (batch_size, 1024, 28, 28)
         # x = self.layer4(x) # (batch_size, 2048, 14, 14)
-        out = self.conv(x)
+        x = self.conv(x)
         
-        _, _, h, w = out.shape
-        avg_out = out / (h*w)
+        GAP = self.w(x)
+        S_c = torch.mean(GAP.reshape(GAP.shape[0], self.num_classes, -1), 2)
 
-        cams= self.w(avg_out)
-        S_c = torch.mean(cams.reshape(cams.shape[0], self.num_classes, -1), 2)
-
-        return S_c, cams
+        return S_c, GAP
 
     def _make_layer(self, in_channel, bottleneck_channel, out_channel, block_num, stride):
 
@@ -76,18 +71,6 @@ class ResNet50_cam(nn.Module):
 
         return nn.Sequential(*blocks)
 
-    def _initialize_weights(self):
-        for m in self.modules():
-            if isinstance(m, nn.Conv2d):
-                nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
-                if m.bias is not None:
-                    nn.init.constant_(m.bias, 0)
-            elif isinstance(m, nn.BatchNorm2d):
-                nn.init.constant_(m.weight, 1)
-                nn.init.constant_(m.bias, 0)
-            elif isinstance(m, nn.Linear):
-                nn.init.normal_(m.weight, 0, 0.01)
-                nn.init.constant_(m.bias, 0)
 
 
 class Bottleneck_block(nn.Module):

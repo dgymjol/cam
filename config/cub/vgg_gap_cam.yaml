@@ -1,7 +1,7 @@
-work_dir: ./work_dir/cub/vgg_gat_bn_test
+work_dir: ./work_dir/cub/vgg_gap_cam_test
 
 num_epoch: 95
-weights : VGG16bn_ImageNet
+weights : VGG16_ImageNet
 
 # feeder
 feeder: feeders.cub.Feeder
@@ -10,19 +10,17 @@ num_worker : 8
 train_feeder_args:
   data_path: data/CUB_200_2011
   phase: train
-  size: 448
-  aug: False
-  aug_N: 3
-  aug_M: 3
+  image_size: 256
+  crop_size : 224
 
 test_feeder_args:
   data_path: data/CUB_200_2011
   phase: test
-  size: 224
-  aug: False
+  image_size: 256
+  crop_size : 224
 
 # model
-model: model.VGG16.vgg_gap_bn
+model: model.VGG16_cam.vgg_gap
 model_args:
   num_classes: 200
 

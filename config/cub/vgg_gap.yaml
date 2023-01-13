@@ -10,7 +10,7 @@ num_worker : 8
 train_feeder_args:
   data_path: data/CUB_200_2011
   phase: train
-  size: 224
+  size: 448
   aug: False
   aug_N: 3
   aug_M: 3
