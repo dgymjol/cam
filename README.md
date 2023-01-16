@@ -23,19 +23,17 @@ conda :
 
 ### 3. Training
 ```bash
- $ python main.py --work-dir work_dir/cub/r50cam_0.001 --config ./config/cub/resnet50_cam.yaml --base-lr 0.001 --num-epoch 95
- $ python main.py --work-dir work_dir/cub/r50cam_aug_0.005 --config ./config/cub/resnet50_cam_aug.yaml --base-lr 0.005--num-epoch 95
- ```
+ $ bash exp.sh 
+```
 
-### 4. Evaluation (mIoU)
+### 4. Evaluation
 ```bash
- $ python evaluation.py --weights ./work_dir/cub/r50cam_0.001:92 --config config/cub/resnet50_cam_eval.yaml
- $ python evaluation.py --weights ./work_dir/cub/r50cam_aug_0.005:67 --config config/cub/resnet50_cam_eval.yaml
+ $ bash eval.sh
  ```
 
 ### 5. Visualization for one image
 ```bash
- $ python visualized_cam.py --weights ./work_dir/cub/r50cam_0.001:92 --image-id 1
+ $ python visualized_cam.py --weights work_dir/cub/vgg16_cam_0.001:45 --image-id 1
  ```
 
 ###  6. References : 
@@ -44,3 +42,5 @@ conda :
 - https://github.com/zhoubolei/CAM/tree/c63f2850a7a3dadc21fa1b021875e2d4d053ece5
 - https://github.com/zhangyongshun/resnet_finetune_cub
 - https://github.com/Uason-Chen/CTR-GCN
+- https://github.com/won-bae/rethinkingCAM
+- https://github.com/junsukchoe/ADL
