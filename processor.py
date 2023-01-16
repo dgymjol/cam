@@ -162,7 +162,7 @@ class Processor():
         if self.arg.scheduler == 'ReduceLROnPlateau':
             self.scheduler = optim.lr_scheduler.ReduceLROnPlateau(self.optimizer, 'max', patience=5, factor = 0.5, verbose = True)
         elif self.arg.scheduler == 'StepLR':
-            self.scheduler = optim.lr_scheduler.StepLR(self.optimizer, step_size=30, gamma=0.1)
+            self.scheduler = optim.lr_scheduler.StepLR(self.optimizer, step_size=60, gamma=0.1)
         else:
             raise Exception(f"There is no {self.arg.scheduler}. Add it in load_scheduler() & step argument")
             

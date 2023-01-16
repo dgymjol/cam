@@ -1,0 +1,40 @@
+work_dir: ./work_dir/cub/vgg_gap_cam_test
+
+num_epoch: 95
+weights : VGG16_ImageNet
+
+# feeder
+feeder: feeders.cub.Feeder
+num_classes : 200
+num_worker : 8
+train_feeder_args:
+  data_path: data/CUB_200_2011
+  phase: train
+  image_size: 256
+  crop_size : 224
+
+test_feeder_args:
+  data_path: data/CUB_200_2011
+  phase: test
+  image_size: 256
+  crop_size : 224
+
+# model
+model: model.VGG16_cam.vgg_gap
+model_args:
+  num_classes: 200
+
+#optim
+weight_decay: 0.0005
+base_lr: 0.001
+
+# training
+device: [0,1]
+batch_size: 64
+test_batch_size: 64
+
+# scheduler
+scheduler: StepLR
+
+# random seed
+seed: 2023

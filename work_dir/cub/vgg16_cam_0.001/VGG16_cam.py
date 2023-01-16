@@ -13,10 +13,10 @@ class VGG(nn.Module):
         self.w = nn.Conv2d(1024, self.num_classes, 1, bias = False) # conv weight => (num_classes, k, 1, 1)
 
     def forward(self, x):
-        x = self.features(x) # vgg16 + 1024 conv
+        x = self.features(x)
 
-        GAP = self.w(x) # weighted sum
-        S_c = torch.mean(GAP.reshape(GAP.shape[0], self.num_classes, -1), 2) # class score
+        GAP = self.w(x)
+        S_c = torch.mean(GAP.reshape(GAP.shape[0], self.num_classes, -1), 2)
 
         return S_c, GAP
 

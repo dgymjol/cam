@@ -1,0 +1,39 @@
+# commend line: main.py --work-dir exp_dir/cub/resnet50_cam_m_0.01 --config ./config/cub/resnet50_cam_m.yaml --base-lr 0.01
+
+base_lr: 0.01
+batch_size: 64
+config: ./config/cub/resnet50_cam_m.yaml
+device:
+- 0
+- 1
+feeder: feeders.cub.Feeder
+ignore_weights: []
+log_interval: 10
+loss: CrossEntropyLoss
+model: model.ResNet50_cam_m.resnet50
+model_args:
+  num_classes: 200
+model_saved_name: resnet50
+num_classes: 200
+num_epoch: 95
+num_worker: 8
+optimizer: SGD
+save_epoch: 30
+save_interval: 10
+scheduler: StepLR
+seed: 2023
+start_epoch: 0
+test_batch_size: 64
+test_feeder_args:
+  crop_size: 224
+  data_path: data/CUB_200_2011
+  image_size: 256
+  phase: test
+train_feeder_args:
+  crop_size: 224
+  data_path: data/CUB_200_2011
+  image_size: 256
+  phase: train
+weight_decay: 0.0005
+weights: ResNet_ImageNet
+work_dir: exp_dir/cub/resnet50_cam_m_0.01

@@ -268,19 +268,19 @@ class Processor():
 
                 # localization
                 gap = gaps[0][pred_label][0] # (14, 14)
-                gap = gap - torch.min(gap)
-                gap = gap / torch.max(gap)
+                gap_min, gap_max = torch.min(gap), torch.max(gap)
+                gap = (gap-gap_min) / (gap_max - gap_min)
                 gap = gap.detach().cpu().numpy()
                 gap_image = np.uint8(255*gap)
                 cam_image = cv2.resize(gap_image,(int(w), int(h)))
                 threshold = np.max(cam_image) * 0.20
                 _, thresh_map = cv2.threshold(cam_image, threshold, 255, cv2.THRESH_BINARY)
                 # _, thresh_map = cv2.threshold(cam_image, threshold, 255, cv2.THRESH_OTSU)
+
                 cnt, labels, stats, centroids = cv2.connectedComponentsWithStats(thresh_map)
 
                 largest_connected_component_idx = np.argmax(stats[1:, -1]) + 1 # background is most
                 pred_box = stats[largest_connected_component_idx][:-1] #(x, y, width, height)
-
                 iou = self.IoU(gt_box, pred_box)
                 sum_iou += iou
         
@@ -323,7 +323,7 @@ class Processor():
                 # localization
                 gap = gaps[0][pred_label][0] # (14, 14)
                 gap_min, gap_max = torch.min(gap), torch.max(gap)
-                gap = (gap-gap_min) / (gap_max - gap_min)
+                gap = (gap-gap_min) / (gap_max - gap_min) # normalization
                 gap = gap.detach().cpu().numpy()
                 gap_image = np.uint8(255*gap)
                 cam_image = cv2.resize(gap_image,(int(w), int(h)))
