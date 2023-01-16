@@ -20,7 +20,7 @@ test_feeder_args:
   crop_size : 224
 
 # model
-model: model.ResNet50_cam.ResNet50_cam
+model: model.ResNet50_cam_m.resnet50
 model_args:
   num_classes: 200
 

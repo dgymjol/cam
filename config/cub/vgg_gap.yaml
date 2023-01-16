@@ -1,7 +1,7 @@
-work_dir: ./work_dir/cub/resent50_cam
+work_dir: ./work_dir/cub/vgg_gat_test
 
 num_epoch: 95
-weights : ResNet_ImageNet
+weights : VGG16_ImageNet
 
 # feeder
 feeder: feeders.cub.Feeder
@@ -10,17 +10,19 @@ num_worker : 8
 train_feeder_args:
   data_path: data/CUB_200_2011
   phase: train
-  image_size: 256
-  crop_size : 224
+  size: 448
+  aug: False
+  aug_N: 3
+  aug_M: 3
 
 test_feeder_args:
   data_path: data/CUB_200_2011
   phase: test
-  image_size: 256
-  crop_size : 224
+  size: 224
+  aug: False
 
 # model
-model: model.ResNet50_cam.ResNet50_cam
+model: model.VGG16.vgg_gap
 model_args:
   num_classes: 200
 

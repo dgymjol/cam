@@ -8,7 +8,6 @@ from torch.utils.data import DataLoader
 import torch.optim as optim
 import torch.nn as nn
 
-from sklearn.metrics import top_k_accuracy_score
 from tensorboardX import SummaryWriter
 import time
 import argparse
@@ -196,7 +195,7 @@ class Processor():
             else:
                 model_weight_file_name = ''
                 for run_file in os.listdir(exp_dir) :
-                    if f"runs-{epoch}" in run_file  and '.pt' in run_file:
+                    if f"runs-{epoch}.pt" in run_file:
                         model_weight_file_name = run_file
                 if model_weight_file_name == '':
                     self.print_log(f'Error : that epoch{epoch} weight file doesnt exist')
@@ -204,7 +203,7 @@ class Processor():
 
                 weights = torch.load(os.path.join(exp_dir,model_weight_file_name))
                 self.model.load_state_dict(weights, strict=False)
-                self.print_log(f"Successful : transfered weights ({os.path.join(exp_dir,model_weight_file_name)})")
+                self.print_log(f"Successful : transfered weights ({os.path.join(exp_dir,model_weight_file_name)}, epoch {epoch})")
 
     def load_loss(self):
         if self.arg.loss == 'CrossEntropyLoss':
@@ -269,19 +268,19 @@ class Processor():
 
                 # localization
                 gap = gaps[0][pred_label][0] # (14, 14)
-                gap = gap - torch.min(gap)
-                gap = gap / torch.max(gap)
+                gap_min, gap_max = torch.min(gap), torch.max(gap)
+                gap = (gap-gap_min) / (gap_max - gap_min)
                 gap = gap.detach().cpu().numpy()
                 gap_image = np.uint8(255*gap)
                 cam_image = cv2.resize(gap_image,(int(w), int(h)))
-                threshold = np.max(cam_image) * 0.55
+                threshold = np.max(cam_image) * 0.20
                 _, thresh_map = cv2.threshold(cam_image, threshold, 255, cv2.THRESH_BINARY)
                 # _, thresh_map = cv2.threshold(cam_image, threshold, 255, cv2.THRESH_OTSU)
+
                 cnt, labels, stats, centroids = cv2.connectedComponentsWithStats(thresh_map)
 
                 largest_connected_component_idx = np.argmax(stats[1:, -1]) + 1 # background is most
                 pred_box = stats[largest_connected_component_idx][:-1] #(x, y, width, height)
-
                 iou = self.IoU(gt_box, pred_box)
                 sum_iou += iou
         
@@ -294,7 +293,10 @@ class Processor():
         self.model.eval()
         loss_value = []
 
-        num_correct = 0
+        num_top1_cls = 0
+        num_top1_loc = 0
+        num_gt_know_loc = 0
+
         num_total = 0
         sum_iou = 0
 
@@ -306,24 +308,28 @@ class Processor():
                 gt_box = item['gt_box'][0].numpy() # (1, 4) : (x, y, width, height)
                 conf, gaps = self.model(data)
 
+                cls = True
                 # classification
                 _, pred_label = torch.max(conf, 1)
                 loss = self.loss(conf, gt_cls)
                 loss_value.append(loss.data.item())
                 if pred_label == gt_cls.detach() :
-                    num_correct += 1
+                    num_top1_cls += 1
+                else:
+                    cls = False
+
                 num_total += 1
 
                 # localization
                 gap = gaps[0][pred_label][0] # (14, 14)
-                gap = gap - torch.min(gap)
-                gap = gap / torch.max(gap)
+                gap_min, gap_max = torch.min(gap), torch.max(gap)
+                gap = (gap-gap_min) / (gap_max - gap_min) # normalization
                 gap = gap.detach().cpu().numpy()
                 gap_image = np.uint8(255*gap)
                 cam_image = cv2.resize(gap_image,(int(w), int(h)))
-                threshold = np.max(cam_image) * 0.40
-                # _, thresh_map = cv2.threshold(cam_image, threshold, 255, cv2.THRESH_BINARY)
-                _, thresh_map = cv2.threshold(cam_image, threshold, 255, cv2.THRESH_OTSU)
+                threshold = np.max(cam_image) * 0.20
+                _, thresh_map = cv2.threshold(cam_image, threshold, 255, cv2.THRESH_BINARY)
+                # _, thresh_map = cv2.threshold(cam_image, threshold, 255, cv2.THRESH_OTSU)
 
                 cnt, labels, stats, centroids = cv2.connectedComponentsWithStats(thresh_map)
 
@@ -332,14 +338,27 @@ class Processor():
 
                 iou = self.IoU(gt_box, pred_box)
                 sum_iou += iou
-        test_acc = num_correct * 100 / num_total 
+                
+                bbox = False
+                if iou >= 0.5:
+                    bbox = True
+                    num_gt_know_loc += 1
+
+                if bbox and cls:
+                    num_top1_loc += 1
+                
+
+        test_top1_cls = num_top1_cls * 100 / num_total 
+        test_top1_loc = num_top1_loc * 100 / num_total 
+        test_gt_know_loc = num_gt_know_loc * 100 / num_total 
+
         test_mIoU = sum_iou / num_total
 
-        self.print_log("\t Mean test loss: {:.4f}. Mean test acc: {:.2f}%. mIoU: {:4f}".format(np.mean(loss_value), test_acc, test_mIoU))
+        self.print_log("\t Mean test top1_cls: {:.2f}%. Mean test top1_loc: {:.2f}%. Mean test gt_known_loc: {:.2f}%. mIoU: {:4f}".format(test_top1_cls, test_top1_loc, test_gt_know_loc, test_mIoU))
 
     def start(self):
         self.eval_test()
-        self.eval_train()
+        # self.eval_train()
 
 if __name__ == '__main__':
     parser = get_parser()

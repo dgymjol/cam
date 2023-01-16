@@ -1,4 +1,4 @@
-results_dir: ./work_dir/cub/resent50_cam
+results_dir: ./work_dir/cub/vgg_gap
 
 # feeder
 feeder: feeders.cub.Feeder
@@ -7,7 +7,7 @@ num_worker : 8
 train_feeder_args:
   data_path: data/CUB_200_2011
   phase: train
-  size: 448
+  size: 224
   aug: False
 
 test_feeder_args:
@@ -17,7 +17,7 @@ test_feeder_args:
   aug: False
 
 # model
-model: model.ResNet50_cam.ResNet50_cam
+model: model.VGG16.vgg_gap
 model_args:
   num_classes: 200
 

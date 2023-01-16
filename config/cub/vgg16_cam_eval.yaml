@@ -1,7 +1,4 @@
-work_dir: ./work_dir/cub/resent50_cam
-
-num_epoch: 95
-weights : ResNet_ImageNet
+results_dir: ./work_dir/cub/vgg_gap_cam
 
 # feeder
 feeder: feeders.cub.Feeder
@@ -20,21 +17,14 @@ test_feeder_args:
   crop_size : 224
 
 # model
-model: model.ResNet50_cam.ResNet50_cam
+model: model.VGG16_cam.vgg_gap
 model_args:
   num_classes: 200
 
-#optim
-weight_decay: 0.0005
-base_lr: 0.001
-
 # training
 device: [0,1]
-batch_size: 64
-test_batch_size: 64
-
-# scheduler
-scheduler: StepLR
+batch_size: 1
+test_batch_size: 1
 
 # random seed
 seed: 2023

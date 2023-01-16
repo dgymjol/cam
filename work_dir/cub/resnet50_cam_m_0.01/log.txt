@@ -1,0 +1,394 @@
+[ Mon Jan 16 15:47:25 2023 ] ------------------------
+[ Mon Jan 16 15:47:25 2023 ] Namespace(base_lr=0.01, batch_size=64, config='./config/cub/resnet50_cam_m.yaml', device=[0, 1], feeder='feeders.cub.Feeder', ignore_weights=[], log_interval=10, loss='CrossEntropyLoss', model='model.ResNet50_cam_m.resnet50', model_args={'num_classes': 200}, model_saved_name='resnet50', num_classes=200, num_epoch=95, num_worker=8, optimizer='SGD', save_epoch=30, save_interval=10, scheduler='StepLR', seed=2023, start_epoch=0, test_batch_size=64, test_feeder_args={'data_path': 'data/CUB_200_2011', 'phase': 'test', 'image_size': 256, 'crop_size': 224}, train_feeder_args={'data_path': 'data/CUB_200_2011', 'phase': 'train', 'image_size': 256, 'crop_size': 224}, weight_decay=0.0005, weights='ResNet_ImageNet', work_dir='exp_dir/cub/resnet50_cam_m_0.01')
+[ Mon Jan 16 15:47:25 2023 ] ------------------------
+[ Mon Jan 16 15:47:25 2023 ] model : 
+[ Mon Jan 16 15:47:25 2023 ] Successful : transfered weights(ResNet50_imageNet)
+[ Mon Jan 16 15:47:53 2023 ] ** epoch: 1
+[ Mon Jan 16 15:48:22 2023 ] current lr : 0.01
+[ Mon Jan 16 15:48:22 2023 ] 	 Mean training loss: 4.5006. Mean training acc: 9.74% 
+[ Mon Jan 16 15:48:36 2023 ] 	 Mean test loss: 3.2923. Mean test acc: 23.52%.
+[ Mon Jan 16 15:48:36 2023 ] ** epoch: 2
+[ Mon Jan 16 15:49:02 2023 ] current lr : 0.01
+[ Mon Jan 16 15:49:02 2023 ] 	 Mean training loss: 2.4311. Mean training acc: 44.58% 
+[ Mon Jan 16 15:49:16 2023 ] 	 Mean test loss: 2.2454. Mean test acc: 42.61%.
+[ Mon Jan 16 15:49:16 2023 ] ** epoch: 3
+[ Mon Jan 16 15:49:44 2023 ] current lr : 0.01
+[ Mon Jan 16 15:49:44 2023 ] 	 Mean training loss: 1.4528. Mean training acc: 68.12% 
+[ Mon Jan 16 15:49:59 2023 ] 	 Mean test loss: 1.8022. Mean test acc: 54.40%.
+[ Mon Jan 16 15:49:59 2023 ] ** epoch: 4
+[ Mon Jan 16 15:50:26 2023 ] current lr : 0.01
+[ Mon Jan 16 15:50:26 2023 ] 	 Mean training loss: 0.9675. Mean training acc: 78.40% 
+[ Mon Jan 16 15:50:40 2023 ] 	 Mean test loss: 1.6215. Mean test acc: 57.47%.
+[ Mon Jan 16 15:50:40 2023 ] ** epoch: 5
+[ Mon Jan 16 15:51:07 2023 ] current lr : 0.01
+[ Mon Jan 16 15:51:07 2023 ] 	 Mean training loss: 0.6636. Mean training acc: 86.29% 
+[ Mon Jan 16 15:51:22 2023 ] 	 Mean test loss: 1.5570. Mean test acc: 59.20%.
+[ Mon Jan 16 15:51:22 2023 ] ** epoch: 6
+[ Mon Jan 16 15:51:48 2023 ] current lr : 0.01
+[ Mon Jan 16 15:51:48 2023 ] 	 Mean training loss: 0.4506. Mean training acc: 91.96% 
+[ Mon Jan 16 15:52:03 2023 ] 	 Mean test loss: 1.3303. Mean test acc: 64.29%.
+[ Mon Jan 16 15:52:03 2023 ] ** epoch: 7
+[ Mon Jan 16 15:52:31 2023 ] current lr : 0.01
+[ Mon Jan 16 15:52:31 2023 ] 	 Mean training loss: 0.3069. Mean training acc: 95.53% 
+[ Mon Jan 16 15:52:45 2023 ] 	 Mean test loss: 1.3427. Mean test acc: 64.69%.
+[ Mon Jan 16 15:52:45 2023 ] ** epoch: 8
+[ Mon Jan 16 15:53:12 2023 ] current lr : 0.01
+[ Mon Jan 16 15:53:12 2023 ] 	 Mean training loss: 0.2210. Mean training acc: 96.98% 
+[ Mon Jan 16 15:53:26 2023 ] 	 Mean test loss: 1.3319. Mean test acc: 64.53%.
+[ Mon Jan 16 15:53:26 2023 ] ** epoch: 9
+[ Mon Jan 16 15:53:53 2023 ] current lr : 0.01
+[ Mon Jan 16 15:53:53 2023 ] 	 Mean training loss: 0.1631. Mean training acc: 98.03% 
+[ Mon Jan 16 15:54:07 2023 ] 	 Mean test loss: 1.2655. Mean test acc: 67.33%.
+[ Mon Jan 16 15:54:07 2023 ] ** epoch: 10
+[ Mon Jan 16 15:54:35 2023 ] current lr : 0.01
+[ Mon Jan 16 15:54:35 2023 ] 	 Mean training loss: 0.1162. Mean training acc: 99.17% 
+[ Mon Jan 16 15:54:49 2023 ] 	 Mean test loss: 1.1786. Mean test acc: 69.19%.
+[ Mon Jan 16 15:54:49 2023 ] ** epoch: 11
+[ Mon Jan 16 15:55:18 2023 ] current lr : 0.01
+[ Mon Jan 16 15:55:18 2023 ] 	 Mean training loss: 0.0785. Mean training acc: 99.58% 
+[ Mon Jan 16 15:55:32 2023 ] 	 Mean test loss: 1.1333. Mean test acc: 70.95%.
+[ Mon Jan 16 15:55:32 2023 ] ** epoch: 12
+[ Mon Jan 16 15:56:00 2023 ] current lr : 0.01
+[ Mon Jan 16 15:56:00 2023 ] 	 Mean training loss: 0.0600. Mean training acc: 99.78% 
+[ Mon Jan 16 15:56:14 2023 ] 	 Mean test loss: 1.1332. Mean test acc: 70.73%.
+[ Mon Jan 16 15:56:14 2023 ] ** epoch: 13
+[ Mon Jan 16 15:56:41 2023 ] current lr : 0.01
+[ Mon Jan 16 15:56:41 2023 ] 	 Mean training loss: 0.0501. Mean training acc: 99.80% 
+[ Mon Jan 16 15:56:56 2023 ] 	 Mean test loss: 1.0900. Mean test acc: 72.14%.
+[ Mon Jan 16 15:56:56 2023 ] ** epoch: 14
+[ Mon Jan 16 15:57:23 2023 ] current lr : 0.01
+[ Mon Jan 16 15:57:23 2023 ] 	 Mean training loss: 0.0356. Mean training acc: 99.90% 
+[ Mon Jan 16 15:57:37 2023 ] 	 Mean test loss: 1.0570. Mean test acc: 72.63%.
+[ Mon Jan 16 15:57:37 2023 ] ** epoch: 15
+[ Mon Jan 16 15:58:05 2023 ] current lr : 0.01
+[ Mon Jan 16 15:58:05 2023 ] 	 Mean training loss: 0.0317. Mean training acc: 99.93% 
+[ Mon Jan 16 15:58:18 2023 ] 	 Mean test loss: 1.0899. Mean test acc: 71.87%.
+[ Mon Jan 16 15:58:18 2023 ] ** epoch: 16
+[ Mon Jan 16 15:58:46 2023 ] current lr : 0.01
+[ Mon Jan 16 15:58:46 2023 ] 	 Mean training loss: 0.0255. Mean training acc: 99.98% 
+[ Mon Jan 16 15:59:01 2023 ] 	 Mean test loss: 1.0491. Mean test acc: 72.66%.
+[ Mon Jan 16 15:59:01 2023 ] ** epoch: 17
+[ Mon Jan 16 15:59:32 2023 ] current lr : 0.01
+[ Mon Jan 16 15:59:32 2023 ] 	 Mean training loss: 0.0251. Mean training acc: 99.93% 
+[ Mon Jan 16 15:59:50 2023 ] 	 Mean test loss: 1.0677. Mean test acc: 73.20%.
+[ Mon Jan 16 15:59:50 2023 ] ** epoch: 18
+[ Mon Jan 16 16:00:24 2023 ] current lr : 0.01
+[ Mon Jan 16 16:00:24 2023 ] 	 Mean training loss: 0.0211. Mean training acc: 99.98% 
+[ Mon Jan 16 16:00:41 2023 ] 	 Mean test loss: 1.0413. Mean test acc: 73.32%.
+[ Mon Jan 16 16:00:41 2023 ] ** epoch: 19
+[ Mon Jan 16 16:01:15 2023 ] current lr : 0.01
+[ Mon Jan 16 16:01:15 2023 ] 	 Mean training loss: 0.0213. Mean training acc: 99.92% 
+[ Mon Jan 16 16:01:35 2023 ] 	 Mean test loss: 1.0773. Mean test acc: 72.58%.
+[ Mon Jan 16 16:01:35 2023 ] ** epoch: 20
+[ Mon Jan 16 16:02:09 2023 ] current lr : 0.01
+[ Mon Jan 16 16:02:09 2023 ] 	 Mean training loss: 0.0174. Mean training acc: 99.98% 
+[ Mon Jan 16 16:02:25 2023 ] 	 Mean test loss: 1.0127. Mean test acc: 74.58%.
+[ Mon Jan 16 16:02:25 2023 ] ** epoch: 21
+[ Mon Jan 16 16:02:54 2023 ] current lr : 0.01
+[ Mon Jan 16 16:02:54 2023 ] 	 Mean training loss: 0.0154. Mean training acc: 99.98% 
+[ Mon Jan 16 16:03:10 2023 ] 	 Mean test loss: 0.9965. Mean test acc: 74.99%.
+[ Mon Jan 16 16:03:10 2023 ] ** epoch: 22
+[ Mon Jan 16 16:03:41 2023 ] current lr : 0.01
+[ Mon Jan 16 16:03:41 2023 ] 	 Mean training loss: 0.0148. Mean training acc: 99.98% 
+[ Mon Jan 16 16:03:59 2023 ] 	 Mean test loss: 1.0125. Mean test acc: 74.44%.
+[ Mon Jan 16 16:03:59 2023 ] ** epoch: 23
+[ Mon Jan 16 16:04:33 2023 ] current lr : 0.01
+[ Mon Jan 16 16:04:33 2023 ] 	 Mean training loss: 0.0135. Mean training acc: 100.00% 
+[ Mon Jan 16 16:04:51 2023 ] 	 Mean test loss: 1.0135. Mean test acc: 74.61%.
+[ Mon Jan 16 16:04:51 2023 ] ** epoch: 24
+[ Mon Jan 16 16:05:25 2023 ] current lr : 0.01
+[ Mon Jan 16 16:05:25 2023 ] 	 Mean training loss: 0.0114. Mean training acc: 100.00% 
+[ Mon Jan 16 16:05:43 2023 ] 	 Mean test loss: 0.9898. Mean test acc: 74.99%.
+[ Mon Jan 16 16:05:43 2023 ] ** epoch: 25
+[ Mon Jan 16 16:06:17 2023 ] current lr : 0.01
+[ Mon Jan 16 16:06:17 2023 ] 	 Mean training loss: 0.0114. Mean training acc: 100.00% 
+[ Mon Jan 16 16:06:32 2023 ] 	 Mean test loss: 1.0046. Mean test acc: 74.58%.
+[ Mon Jan 16 16:06:32 2023 ] ** epoch: 26
+[ Mon Jan 16 16:07:01 2023 ] current lr : 0.01
+[ Mon Jan 16 16:07:01 2023 ] 	 Mean training loss: 0.0105. Mean training acc: 100.00% 
+[ Mon Jan 16 16:07:18 2023 ] 	 Mean test loss: 1.0041. Mean test acc: 74.66%.
+[ Mon Jan 16 16:07:18 2023 ] ** epoch: 27
+[ Mon Jan 16 16:07:51 2023 ] current lr : 0.01
+[ Mon Jan 16 16:07:51 2023 ] 	 Mean training loss: 0.0103. Mean training acc: 100.00% 
+[ Mon Jan 16 16:08:09 2023 ] 	 Mean test loss: 0.9895. Mean test acc: 75.08%.
+[ Mon Jan 16 16:08:09 2023 ] ** epoch: 28
+[ Mon Jan 16 16:08:38 2023 ] current lr : 0.01
+[ Mon Jan 16 16:08:38 2023 ] 	 Mean training loss: 0.0099. Mean training acc: 100.00% 
+[ Mon Jan 16 16:08:53 2023 ] 	 Mean test loss: 0.9960. Mean test acc: 74.84%.
+[ Mon Jan 16 16:08:53 2023 ] ** epoch: 29
+[ Mon Jan 16 16:09:26 2023 ] current lr : 0.01
+[ Mon Jan 16 16:09:26 2023 ] 	 Mean training loss: 0.0097. Mean training acc: 100.00% 
+[ Mon Jan 16 16:09:47 2023 ] 	 Mean test loss: 1.0103. Mean test acc: 74.78%.
+[ Mon Jan 16 16:09:47 2023 ] ** epoch: 30
+[ Mon Jan 16 16:10:23 2023 ] current lr : 0.01
+[ Mon Jan 16 16:10:23 2023 ] 	 Mean training loss: 0.0093. Mean training acc: 100.00% 
+[ Mon Jan 16 16:10:43 2023 ] 	 Mean test loss: 1.0280. Mean test acc: 74.51%.
+[ Mon Jan 16 16:10:43 2023 ] ** epoch: 31
+[ Mon Jan 16 16:11:19 2023 ] current lr : 0.01
+[ Mon Jan 16 16:11:19 2023 ] 	 Mean training loss: 0.0098. Mean training acc: 100.00% 
+[ Mon Jan 16 16:11:40 2023 ] 	 Mean test loss: 1.0021. Mean test acc: 75.01%.
+[ Mon Jan 16 16:11:40 2023 ] ** epoch: 32
+[ Mon Jan 16 16:12:15 2023 ] current lr : 0.01
+[ Mon Jan 16 16:12:15 2023 ] 	 Mean training loss: 0.0107. Mean training acc: 99.98% 
+[ Mon Jan 16 16:12:35 2023 ] 	 Mean test loss: 1.0356. Mean test acc: 74.21%.
+[ Mon Jan 16 16:12:35 2023 ] ** epoch: 33
+[ Mon Jan 16 16:13:11 2023 ] current lr : 0.01
+[ Mon Jan 16 16:13:11 2023 ] 	 Mean training loss: 0.0098. Mean training acc: 100.00% 
+[ Mon Jan 16 16:13:31 2023 ] 	 Mean test loss: 0.9946. Mean test acc: 74.96%.
+[ Mon Jan 16 16:13:31 2023 ] ** epoch: 34
+[ Mon Jan 16 16:14:02 2023 ] current lr : 0.01
+[ Mon Jan 16 16:14:02 2023 ] 	 Mean training loss: 0.0092. Mean training acc: 100.00% 
+[ Mon Jan 16 16:14:21 2023 ] 	 Mean test loss: 1.0250. Mean test acc: 74.34%.
+[ Mon Jan 16 16:14:21 2023 ] ** epoch: 35
+[ Mon Jan 16 16:14:56 2023 ] current lr : 0.01
+[ Mon Jan 16 16:14:56 2023 ] 	 Mean training loss: 0.0085. Mean training acc: 100.00% 
+[ Mon Jan 16 16:15:17 2023 ] 	 Mean test loss: 0.9909. Mean test acc: 75.13%.
+[ Mon Jan 16 16:15:17 2023 ] ** epoch: 36
+[ Mon Jan 16 16:15:54 2023 ] current lr : 0.01
+[ Mon Jan 16 16:15:54 2023 ] 	 Mean training loss: 0.0089. Mean training acc: 100.00% 
+[ Mon Jan 16 16:16:12 2023 ] 	 Mean test loss: 0.9959. Mean test acc: 75.49%.
+[ Mon Jan 16 16:16:12 2023 ] ** epoch: 37
+[ Mon Jan 16 16:16:43 2023 ] current lr : 0.01
+[ Mon Jan 16 16:16:43 2023 ] 	 Mean training loss: 0.0095. Mean training acc: 100.00% 
+[ Mon Jan 16 16:17:04 2023 ] 	 Mean test loss: 1.0477. Mean test acc: 73.73%.
+[ Mon Jan 16 16:17:04 2023 ] ** epoch: 38
+[ Mon Jan 16 16:17:40 2023 ] current lr : 0.01
+[ Mon Jan 16 16:17:40 2023 ] 	 Mean training loss: 0.0199. Mean training acc: 99.88% 
+[ Mon Jan 16 16:18:00 2023 ] 	 Mean test loss: 1.0676. Mean test acc: 73.23%.
+[ Mon Jan 16 16:18:00 2023 ] ** epoch: 39
+[ Mon Jan 16 16:18:37 2023 ] current lr : 0.01
+[ Mon Jan 16 16:18:37 2023 ] 	 Mean training loss: 0.0139. Mean training acc: 99.98% 
+[ Mon Jan 16 16:18:57 2023 ] 	 Mean test loss: 1.0315. Mean test acc: 74.47%.
+[ Mon Jan 16 16:18:57 2023 ] ** epoch: 40
+[ Mon Jan 16 16:19:34 2023 ] current lr : 0.01
+[ Mon Jan 16 16:19:34 2023 ] 	 Mean training loss: 0.0109. Mean training acc: 99.98% 
+[ Mon Jan 16 16:19:54 2023 ] 	 Mean test loss: 1.0099. Mean test acc: 75.01%.
+[ Mon Jan 16 16:19:55 2023 ] ** epoch: 41
+[ Mon Jan 16 16:20:30 2023 ] current lr : 0.01
+[ Mon Jan 16 16:20:30 2023 ] 	 Mean training loss: 0.0097. Mean training acc: 100.00% 
+[ Mon Jan 16 16:20:50 2023 ] 	 Mean test loss: 1.0067. Mean test acc: 75.06%.
+[ Mon Jan 16 16:20:50 2023 ] ** epoch: 42
+[ Mon Jan 16 16:21:24 2023 ] current lr : 0.01
+[ Mon Jan 16 16:21:24 2023 ] 	 Mean training loss: 0.0083. Mean training acc: 100.00% 
+[ Mon Jan 16 16:21:42 2023 ] 	 Mean test loss: 0.9962. Mean test acc: 75.22%.
+[ Mon Jan 16 16:21:42 2023 ] ** epoch: 43
+[ Mon Jan 16 16:22:13 2023 ] current lr : 0.01
+[ Mon Jan 16 16:22:13 2023 ] 	 Mean training loss: 0.0080. Mean training acc: 100.00% 
+[ Mon Jan 16 16:22:31 2023 ] 	 Mean test loss: 1.0074. Mean test acc: 75.32%.
+[ Mon Jan 16 16:22:31 2023 ] ** epoch: 44
+[ Mon Jan 16 16:23:02 2023 ] current lr : 0.01
+[ Mon Jan 16 16:23:02 2023 ] 	 Mean training loss: 0.0081. Mean training acc: 100.00% 
+[ Mon Jan 16 16:23:19 2023 ] 	 Mean test loss: 1.0025. Mean test acc: 75.11%.
+[ Mon Jan 16 16:23:19 2023 ] ** epoch: 45
+[ Mon Jan 16 16:23:50 2023 ] current lr : 0.01
+[ Mon Jan 16 16:23:50 2023 ] 	 Mean training loss: 0.0104. Mean training acc: 99.95% 
+[ Mon Jan 16 16:24:08 2023 ] 	 Mean test loss: 1.0394. Mean test acc: 73.92%.
+[ Mon Jan 16 16:24:08 2023 ] ** epoch: 46
+[ Mon Jan 16 16:24:38 2023 ] current lr : 0.01
+[ Mon Jan 16 16:24:38 2023 ] 	 Mean training loss: 0.0100. Mean training acc: 99.98% 
+[ Mon Jan 16 16:24:53 2023 ] 	 Mean test loss: 1.0483. Mean test acc: 74.02%.
+[ Mon Jan 16 16:24:53 2023 ] ** epoch: 47
+[ Mon Jan 16 16:25:22 2023 ] current lr : 0.01
+[ Mon Jan 16 16:25:22 2023 ] 	 Mean training loss: 0.0112. Mean training acc: 99.98% 
+[ Mon Jan 16 16:25:37 2023 ] 	 Mean test loss: 1.0419. Mean test acc: 74.84%.
+[ Mon Jan 16 16:25:37 2023 ] ** epoch: 48
+[ Mon Jan 16 16:26:05 2023 ] current lr : 0.01
+[ Mon Jan 16 16:26:05 2023 ] 	 Mean training loss: 0.0090. Mean training acc: 100.00% 
+[ Mon Jan 16 16:26:20 2023 ] 	 Mean test loss: 1.0102. Mean test acc: 75.34%.
+[ Mon Jan 16 16:26:20 2023 ] ** epoch: 49
+[ Mon Jan 16 16:26:47 2023 ] current lr : 0.01
+[ Mon Jan 16 16:26:47 2023 ] 	 Mean training loss: 0.0081. Mean training acc: 100.00% 
+[ Mon Jan 16 16:27:02 2023 ] 	 Mean test loss: 0.9948. Mean test acc: 75.49%.
+[ Mon Jan 16 16:27:02 2023 ] ** epoch: 50
+[ Mon Jan 16 16:27:29 2023 ] current lr : 0.01
+[ Mon Jan 16 16:27:29 2023 ] 	 Mean training loss: 0.0073. Mean training acc: 100.00% 
+[ Mon Jan 16 16:27:43 2023 ] 	 Mean test loss: 0.9866. Mean test acc: 75.53%.
+[ Mon Jan 16 16:27:43 2023 ] ** epoch: 51
+[ Mon Jan 16 16:28:11 2023 ] current lr : 0.01
+[ Mon Jan 16 16:28:11 2023 ] 	 Mean training loss: 0.0098. Mean training acc: 99.97% 
+[ Mon Jan 16 16:28:25 2023 ] 	 Mean test loss: 1.0167. Mean test acc: 75.41%.
+[ Mon Jan 16 16:28:25 2023 ] ** epoch: 52
+[ Mon Jan 16 16:28:51 2023 ] current lr : 0.01
+[ Mon Jan 16 16:28:51 2023 ] 	 Mean training loss: 0.0124. Mean training acc: 99.98% 
+[ Mon Jan 16 16:29:05 2023 ] 	 Mean test loss: 1.1026. Mean test acc: 72.95%.
+[ Mon Jan 16 16:29:05 2023 ] ** epoch: 53
+[ Mon Jan 16 16:29:32 2023 ] current lr : 0.01
+[ Mon Jan 16 16:29:32 2023 ] 	 Mean training loss: 0.0355. Mean training acc: 99.68% 
+[ Mon Jan 16 16:29:46 2023 ] 	 Mean test loss: 1.3648. Mean test acc: 67.17%.
+[ Mon Jan 16 16:29:46 2023 ] ** epoch: 54
+[ Mon Jan 16 16:30:13 2023 ] current lr : 0.01
+[ Mon Jan 16 16:30:13 2023 ] 	 Mean training loss: 0.1376. Mean training acc: 98.30% 
+[ Mon Jan 16 16:30:27 2023 ] 	 Mean test loss: 1.7761. Mean test acc: 58.08%.
+[ Mon Jan 16 16:30:28 2023 ] ** epoch: 55
+[ Mon Jan 16 16:30:54 2023 ] current lr : 0.01
+[ Mon Jan 16 16:30:54 2023 ] 	 Mean training loss: 0.1785. Mean training acc: 97.60% 
+[ Mon Jan 16 16:31:08 2023 ] 	 Mean test loss: 1.5452. Mean test acc: 62.82%.
+[ Mon Jan 16 16:31:08 2023 ] ** epoch: 56
+[ Mon Jan 16 16:31:35 2023 ] current lr : 0.01
+[ Mon Jan 16 16:31:35 2023 ] 	 Mean training loss: 0.1625. Mean training acc: 98.03% 
+[ Mon Jan 16 16:31:49 2023 ] 	 Mean test loss: 1.5437. Mean test acc: 62.37%.
+[ Mon Jan 16 16:31:49 2023 ] ** epoch: 57
+[ Mon Jan 16 16:32:17 2023 ] current lr : 0.01
+[ Mon Jan 16 16:32:17 2023 ] 	 Mean training loss: 0.1033. Mean training acc: 98.85% 
+[ Mon Jan 16 16:32:31 2023 ] 	 Mean test loss: 1.5080. Mean test acc: 63.57%.
+[ Mon Jan 16 16:32:31 2023 ] ** epoch: 58
+[ Mon Jan 16 16:32:58 2023 ] current lr : 0.01
+[ Mon Jan 16 16:32:58 2023 ] 	 Mean training loss: 0.0701. Mean training acc: 99.28% 
+[ Mon Jan 16 16:33:11 2023 ] 	 Mean test loss: 1.4302. Mean test acc: 65.88%.
+[ Mon Jan 16 16:33:11 2023 ] ** epoch: 59
+[ Mon Jan 16 16:33:38 2023 ] current lr : 0.01
+[ Mon Jan 16 16:33:38 2023 ] 	 Mean training loss: 0.0715. Mean training acc: 99.22% 
+[ Mon Jan 16 16:33:52 2023 ] 	 Mean test loss: 1.1677. Mean test acc: 70.99%.
+[ Mon Jan 16 16:33:52 2023 ] ** epoch: 60
+[ Mon Jan 16 16:34:20 2023 ] current lr : 0.001
+[ Mon Jan 16 16:34:20 2023 ] 	 Mean training loss: 0.0366. Mean training acc: 99.72% 
+[ Mon Jan 16 16:34:34 2023 ] 	 Mean test loss: 1.1724. Mean test acc: 71.38%.
+[ Mon Jan 16 16:34:34 2023 ] ** epoch: 61
+[ Mon Jan 16 16:35:03 2023 ] current lr : 0.001
+[ Mon Jan 16 16:35:03 2023 ] 	 Mean training loss: 0.0257. Mean training acc: 99.87% 
+[ Mon Jan 16 16:35:17 2023 ] 	 Mean test loss: 1.0037. Mean test acc: 75.27%.
+[ Mon Jan 16 16:35:17 2023 ] ** epoch: 62
+[ Mon Jan 16 16:35:45 2023 ] current lr : 0.001
+[ Mon Jan 16 16:35:45 2023 ] 	 Mean training loss: 0.0137. Mean training acc: 100.00% 
+[ Mon Jan 16 16:36:00 2023 ] 	 Mean test loss: 0.9829. Mean test acc: 75.42%.
+[ Mon Jan 16 16:36:00 2023 ] ** epoch: 63
+[ Mon Jan 16 16:36:29 2023 ] current lr : 0.001
+[ Mon Jan 16 16:36:29 2023 ] 	 Mean training loss: 0.0116. Mean training acc: 100.00% 
+[ Mon Jan 16 16:36:43 2023 ] 	 Mean test loss: 0.9780. Mean test acc: 75.53%.
+[ Mon Jan 16 16:36:43 2023 ] ** epoch: 64
+[ Mon Jan 16 16:37:11 2023 ] current lr : 0.001
+[ Mon Jan 16 16:37:11 2023 ] 	 Mean training loss: 0.0107. Mean training acc: 100.00% 
+[ Mon Jan 16 16:37:26 2023 ] 	 Mean test loss: 0.9697. Mean test acc: 75.98%.
+[ Mon Jan 16 16:37:26 2023 ] ** epoch: 65
+[ Mon Jan 16 16:37:53 2023 ] current lr : 0.001
+[ Mon Jan 16 16:37:53 2023 ] 	 Mean training loss: 0.0109. Mean training acc: 100.00% 
+[ Mon Jan 16 16:38:08 2023 ] 	 Mean test loss: 0.9724. Mean test acc: 75.73%.
+[ Mon Jan 16 16:38:08 2023 ] ** epoch: 66
+[ Mon Jan 16 16:38:36 2023 ] current lr : 0.001
+[ Mon Jan 16 16:38:36 2023 ] 	 Mean training loss: 0.0092. Mean training acc: 100.00% 
+[ Mon Jan 16 16:38:51 2023 ] 	 Mean test loss: 0.9612. Mean test acc: 75.94%.
+[ Mon Jan 16 16:38:51 2023 ] ** epoch: 67
+[ Mon Jan 16 16:39:19 2023 ] current lr : 0.001
+[ Mon Jan 16 16:39:19 2023 ] 	 Mean training loss: 0.0091. Mean training acc: 99.98% 
+[ Mon Jan 16 16:39:34 2023 ] 	 Mean test loss: 0.9605. Mean test acc: 76.15%.
+[ Mon Jan 16 16:39:34 2023 ] ** epoch: 68
+[ Mon Jan 16 16:40:02 2023 ] current lr : 0.001
+[ Mon Jan 16 16:40:02 2023 ] 	 Mean training loss: 0.0084. Mean training acc: 100.00% 
+[ Mon Jan 16 16:40:17 2023 ] 	 Mean test loss: 0.9558. Mean test acc: 76.39%.
+[ Mon Jan 16 16:40:17 2023 ] ** epoch: 69
+[ Mon Jan 16 16:40:44 2023 ] current lr : 0.001
+[ Mon Jan 16 16:40:44 2023 ] 	 Mean training loss: 0.0077. Mean training acc: 100.00% 
+[ Mon Jan 16 16:40:59 2023 ] 	 Mean test loss: 0.9536. Mean test acc: 76.27%.
+[ Mon Jan 16 16:40:59 2023 ] ** epoch: 70
+[ Mon Jan 16 16:41:26 2023 ] current lr : 0.001
+[ Mon Jan 16 16:41:26 2023 ] 	 Mean training loss: 0.0080. Mean training acc: 100.00% 
+[ Mon Jan 16 16:41:41 2023 ] 	 Mean test loss: 0.9553. Mean test acc: 76.23%.
+[ Mon Jan 16 16:41:41 2023 ] ** epoch: 71
+[ Mon Jan 16 16:42:09 2023 ] current lr : 0.001
+[ Mon Jan 16 16:42:09 2023 ] 	 Mean training loss: 0.0077. Mean training acc: 100.00% 
+[ Mon Jan 16 16:42:24 2023 ] 	 Mean test loss: 0.9559. Mean test acc: 76.30%.
+[ Mon Jan 16 16:42:24 2023 ] ** epoch: 72
+[ Mon Jan 16 16:42:52 2023 ] current lr : 0.001
+[ Mon Jan 16 16:42:52 2023 ] 	 Mean training loss: 0.0074. Mean training acc: 100.00% 
+[ Mon Jan 16 16:43:07 2023 ] 	 Mean test loss: 0.9570. Mean test acc: 76.04%.
+[ Mon Jan 16 16:43:07 2023 ] ** epoch: 73
+[ Mon Jan 16 16:43:34 2023 ] current lr : 0.001
+[ Mon Jan 16 16:43:34 2023 ] 	 Mean training loss: 0.0073. Mean training acc: 100.00% 
+[ Mon Jan 16 16:43:49 2023 ] 	 Mean test loss: 0.9526. Mean test acc: 76.20%.
+[ Mon Jan 16 16:43:49 2023 ] ** epoch: 74
+[ Mon Jan 16 16:44:17 2023 ] current lr : 0.001
+[ Mon Jan 16 16:44:17 2023 ] 	 Mean training loss: 0.0075. Mean training acc: 100.00% 
+[ Mon Jan 16 16:44:31 2023 ] 	 Mean test loss: 0.9497. Mean test acc: 76.41%.
+[ Mon Jan 16 16:44:31 2023 ] ** epoch: 75
+[ Mon Jan 16 16:45:01 2023 ] current lr : 0.001
+[ Mon Jan 16 16:45:01 2023 ] 	 Mean training loss: 0.0068. Mean training acc: 100.00% 
+[ Mon Jan 16 16:45:15 2023 ] 	 Mean test loss: 0.9463. Mean test acc: 76.32%.
+[ Mon Jan 16 16:45:15 2023 ] ** epoch: 76
+[ Mon Jan 16 16:45:43 2023 ] current lr : 0.001
+[ Mon Jan 16 16:45:43 2023 ] 	 Mean training loss: 0.0066. Mean training acc: 100.00% 
+[ Mon Jan 16 16:45:58 2023 ] 	 Mean test loss: 0.9496. Mean test acc: 76.35%.
+[ Mon Jan 16 16:45:58 2023 ] ** epoch: 77
+[ Mon Jan 16 16:46:25 2023 ] current lr : 0.001
+[ Mon Jan 16 16:46:25 2023 ] 	 Mean training loss: 0.0065. Mean training acc: 100.00% 
+[ Mon Jan 16 16:46:40 2023 ] 	 Mean test loss: 0.9473. Mean test acc: 76.18%.
+[ Mon Jan 16 16:46:40 2023 ] ** epoch: 78
+[ Mon Jan 16 16:47:08 2023 ] current lr : 0.001
+[ Mon Jan 16 16:47:08 2023 ] 	 Mean training loss: 0.0065. Mean training acc: 100.00% 
+[ Mon Jan 16 16:47:23 2023 ] 	 Mean test loss: 0.9472. Mean test acc: 76.41%.
+[ Mon Jan 16 16:47:23 2023 ] ** epoch: 79
+[ Mon Jan 16 16:47:50 2023 ] current lr : 0.001
+[ Mon Jan 16 16:47:50 2023 ] 	 Mean training loss: 0.0062. Mean training acc: 100.00% 
+[ Mon Jan 16 16:48:05 2023 ] 	 Mean test loss: 0.9464. Mean test acc: 76.41%.
+[ Mon Jan 16 16:48:05 2023 ] ** epoch: 80
+[ Mon Jan 16 16:48:32 2023 ] current lr : 0.001
+[ Mon Jan 16 16:48:32 2023 ] 	 Mean training loss: 0.0060. Mean training acc: 100.00% 
+[ Mon Jan 16 16:48:47 2023 ] 	 Mean test loss: 0.9450. Mean test acc: 76.46%.
+[ Mon Jan 16 16:48:47 2023 ] ** epoch: 81
+[ Mon Jan 16 16:49:15 2023 ] current lr : 0.001
+[ Mon Jan 16 16:49:15 2023 ] 	 Mean training loss: 0.0063. Mean training acc: 100.00% 
+[ Mon Jan 16 16:49:29 2023 ] 	 Mean test loss: 0.9492. Mean test acc: 76.30%.
+[ Mon Jan 16 16:49:29 2023 ] ** epoch: 82
+[ Mon Jan 16 16:49:57 2023 ] current lr : 0.001
+[ Mon Jan 16 16:49:57 2023 ] 	 Mean training loss: 0.0063. Mean training acc: 100.00% 
+[ Mon Jan 16 16:50:11 2023 ] 	 Mean test loss: 0.9487. Mean test acc: 76.46%.
+[ Mon Jan 16 16:50:11 2023 ] ** epoch: 83
+[ Mon Jan 16 16:50:38 2023 ] current lr : 0.001
+[ Mon Jan 16 16:50:38 2023 ] 	 Mean training loss: 0.0057. Mean training acc: 100.00% 
+[ Mon Jan 16 16:50:53 2023 ] 	 Mean test loss: 0.9488. Mean test acc: 76.53%.
+[ Mon Jan 16 16:50:53 2023 ] ** epoch: 84
+[ Mon Jan 16 16:51:20 2023 ] current lr : 0.001
+[ Mon Jan 16 16:51:20 2023 ] 	 Mean training loss: 0.0060. Mean training acc: 100.00% 
+[ Mon Jan 16 16:51:35 2023 ] 	 Mean test loss: 0.9437. Mean test acc: 76.48%.
+[ Mon Jan 16 16:51:35 2023 ] ** epoch: 85
+[ Mon Jan 16 16:52:02 2023 ] current lr : 0.001
+[ Mon Jan 16 16:52:02 2023 ] 	 Mean training loss: 0.0058. Mean training acc: 100.00% 
+[ Mon Jan 16 16:52:16 2023 ] 	 Mean test loss: 0.9462. Mean test acc: 76.54%.
+[ Mon Jan 16 16:52:16 2023 ] ** epoch: 86
+[ Mon Jan 16 16:52:43 2023 ] current lr : 0.001
+[ Mon Jan 16 16:52:43 2023 ] 	 Mean training loss: 0.0061. Mean training acc: 100.00% 
+[ Mon Jan 16 16:52:56 2023 ] 	 Mean test loss: 0.9443. Mean test acc: 76.61%.
+[ Mon Jan 16 16:52:56 2023 ] ** epoch: 87
+[ Mon Jan 16 16:53:24 2023 ] current lr : 0.001
+[ Mon Jan 16 16:53:24 2023 ] 	 Mean training loss: 0.0056. Mean training acc: 100.00% 
+[ Mon Jan 16 16:53:38 2023 ] 	 Mean test loss: 0.9465. Mean test acc: 76.32%.
+[ Mon Jan 16 16:53:38 2023 ] ** epoch: 88
+[ Mon Jan 16 16:54:06 2023 ] current lr : 0.001
+[ Mon Jan 16 16:54:06 2023 ] 	 Mean training loss: 0.0055. Mean training acc: 100.00% 
+[ Mon Jan 16 16:54:21 2023 ] 	 Mean test loss: 0.9408. Mean test acc: 76.79%.
+[ Mon Jan 16 16:54:21 2023 ] ** epoch: 89
+[ Mon Jan 16 16:54:48 2023 ] current lr : 0.001
+[ Mon Jan 16 16:54:48 2023 ] 	 Mean training loss: 0.0055. Mean training acc: 100.00% 
+[ Mon Jan 16 16:55:03 2023 ] 	 Mean test loss: 0.9453. Mean test acc: 76.75%.
+[ Mon Jan 16 16:55:03 2023 ] ** epoch: 90
+[ Mon Jan 16 16:55:29 2023 ] current lr : 0.001
+[ Mon Jan 16 16:55:30 2023 ] 	 Mean training loss: 0.0057. Mean training acc: 100.00% 
+[ Mon Jan 16 16:55:44 2023 ] 	 Mean test loss: 0.9442. Mean test acc: 76.60%.
+[ Mon Jan 16 16:55:44 2023 ] ** epoch: 91
+[ Mon Jan 16 16:56:11 2023 ] current lr : 0.001
+[ Mon Jan 16 16:56:11 2023 ] 	 Mean training loss: 0.0054. Mean training acc: 100.00% 
+[ Mon Jan 16 16:56:25 2023 ] 	 Mean test loss: 0.9405. Mean test acc: 76.73%.
+[ Mon Jan 16 16:56:25 2023 ] ** epoch: 92
+[ Mon Jan 16 16:56:52 2023 ] current lr : 0.001
+[ Mon Jan 16 16:56:52 2023 ] 	 Mean training loss: 0.0055. Mean training acc: 100.00% 
+[ Mon Jan 16 16:57:07 2023 ] 	 Mean test loss: 0.9441. Mean test acc: 76.68%.
+[ Mon Jan 16 16:57:07 2023 ] ** epoch: 93
+[ Mon Jan 16 16:57:35 2023 ] current lr : 0.001
+[ Mon Jan 16 16:57:35 2023 ] 	 Mean training loss: 0.0054. Mean training acc: 100.00% 
+[ Mon Jan 16 16:57:49 2023 ] 	 Mean test loss: 0.9440. Mean test acc: 76.53%.
+[ Mon Jan 16 16:57:49 2023 ] ** epoch: 94
+[ Mon Jan 16 16:58:16 2023 ] current lr : 0.001
+[ Mon Jan 16 16:58:16 2023 ] 	 Mean training loss: 0.0053. Mean training acc: 100.00% 
+[ Mon Jan 16 16:58:31 2023 ] 	 Mean test loss: 0.9473. Mean test acc: 76.53%.
+[ Mon Jan 16 16:58:31 2023 ] ** epoch: 95
+[ Mon Jan 16 16:58:58 2023 ] current lr : 0.001
+[ Mon Jan 16 16:58:58 2023 ] 	 Mean training loss: 0.0050. Mean training acc: 100.00% 
+[ Mon Jan 16 16:59:13 2023 ] 	 Mean test loss: 0.9409. Mean test acc: 76.79%.
+[ Mon Jan 16 16:59:13 2023 ] Best accuracy: 0
+[ Mon Jan 16 16:59:13 2023 ] Epoch number: 0
+[ Mon Jan 16 16:59:13 2023 ] Model name: exp_dir/cub/resnet50_cam_m_0.01
+[ Mon Jan 16 16:59:13 2023 ] Model total number of params: 18188352
+[ Mon Jan 16 16:59:13 2023 ] Weight decay: 0.0005
+[ Mon Jan 16 16:59:13 2023 ] Base LR: 0.01
+[ Mon Jan 16 16:59:13 2023 ] Batch Size: 64
+[ Mon Jan 16 16:59:13 2023 ] Test Batch Size: 64
+[ Mon Jan 16 16:59:13 2023 ] seed: 2023

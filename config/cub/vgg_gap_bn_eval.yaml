@@ -1,4 +1,4 @@
-results_dir: ./work_dir/cub/resent50_cam
+results_dir: ./work_dir/cub/vgg_gap
 
 # feeder
 feeder: feeders.cub.Feeder
@@ -17,7 +17,7 @@ test_feeder_args:
   aug: False
 
 # model
-model: model.ResNet50_cam.ResNet50_cam
+model: model.VGG16.vgg_gap_bn
 model_args:
   num_classes: 200
 

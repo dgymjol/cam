@@ -13,3 +13,9 @@ sudo apt-get install tmux
 
 conda install pyyaml scit-skelarn -y
 conda install scikit-learn tensorboardX -y
+
+pip install opencv-python
+sudo apt-get update
+sudo apt-get install libgl1-mesa-glx
+sudo apt-get install libglib2.0-0
+pip install tensorboardX
